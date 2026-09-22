@@ -1,0 +1,78 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TBP PDS Skill Ladder Wireframe v0.1</title>
+<style>
+:root{--n9:#071E3A;--n8:#0B2A4A;--b6:#1546F5;--b1:#E8EEFF;--o:#FF7A1A;--bg:#F8FAFC;--w:#fff;--t:#111827;--s:#4B5563;--m:#6B7280;--g4:#9CA3AF;--g3:#D1D5DB;--g2:#E5E7EB;--g1:#F3F4F6;--ok:#16805D;--okbg:#EAF7F2}
+*{box-sizing:border-box}body{margin:0;background:#e9edf2;color:var(--t);font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.bar{background:var(--n9);color:#fff;padding:14px 22px;display:flex;justify-content:space-between}.bar b{font-size:15px}.bar span{font-size:12px;opacity:.75}.stage{max-width:1450px;margin:auto;padding:28px;display:grid;grid-template-columns:420px 420px 1fr;gap:22px;align-items:start}.phone{background:var(--bg);border:1px solid #cfd6df;border-radius:28px;overflow:hidden;box-shadow:0 12px 28px #0f172a1f;min-height:880px}.appbar{height:58px;background:#fff;border-bottom:1px solid var(--g2);display:grid;grid-template-columns:48px 1fr 48px;align-items:center;padding:0 8px}.back{font-size:25px;color:var(--n9);text-align:center}.appbar strong{text-align:center;font-size:16px;color:var(--n9)}.content{padding:16px;display:flex;flex-direction:column;gap:14px}.context{font-size:12px;color:var(--m);margin-bottom:-4px}.context b{color:var(--n8)}.card{background:#fff;border:1px solid var(--g2);border-radius:12px;padding:16px}.section{font-size:15px;font-weight:800;color:var(--n9);margin:0 0 12px}.skill{padding:14px 0;border-top:1px solid var(--g1);display:grid;grid-template-columns:1fr 22px;gap:8px}.skill:first-child{border-top:0;padding-top:0}.skill:last-child{padding-bottom:0}.skill h3{font-size:14px;margin:0;color:var(--n9)}.skill .level{font-size:12px;color:var(--b6);font-weight:800;margin-top:5px}.skill p{font-size:12px;color:var(--s);margin:5px 0 0;line-height:1.45}.arrow{color:var(--g4);font-size:22px;align-self:center}.changed{font-size:10px;background:var(--okbg);color:var(--ok);padding:3px 6px;border-radius:5px;margin-left:5px}
+.current{background:var(--n8);color:#fff;border-radius:12px;padding:16px}.eyebrow{font-size:11px;opacity:.7;font-weight:800}.current h1{font-size:25px;margin:7px 0 5px}.current p{font-size:14px;line-height:1.5;margin:0;font-weight:700}.date{font-size:11px;opacity:.65;margin-top:9px}.ladder{background:#fff;border:1px solid var(--g2);border-radius:12px;padding:16px}.step{display:grid;grid-template-columns:26px 1fr;gap:10px;position:relative;padding-bottom:19px}.step:last-child{padding-bottom:0}.step:not(:last-child):before{content:"";position:absolute;left:10px;top:22px;bottom:0;width:2px;background:var(--g2)}.circle{width:22px;height:22px;border-radius:50%;border:2px solid var(--g3);background:#fff;display:grid;place-items:center;font-size:10px;color:#fff;z-index:1}.step.done .circle{background:var(--ok);border-color:var(--ok)}.step.now .circle{background:var(--b6);border-color:var(--b6);box-shadow:0 0 0 4px var(--b1)}.step h3{font-size:13px;margin:2px 0 4px;color:var(--n9)}.step p{font-size:12px;color:var(--s);margin:0;line-height:1.45}.nowtag{font-size:9px;background:var(--b1);color:var(--b6);padding:3px 5px;border-radius:4px;margin-left:5px}.evidence{padding:10px 0;border-top:1px solid var(--g1)}.evidence:first-of-type{border-top:0;padding-top:0}.evidence b{font-size:12px}.evidence p{font-size:12px;color:var(--s);margin:4px 0}.evidence small{font-size:10px;color:var(--m)}.head{display:flex;justify-content:space-between;align-items:center}.link{font-size:11px;color:var(--b6);font-weight:800}.history{padding:10px 0;border-top:1px solid var(--g1)}.history:first-of-type{border-top:0}.history b{font-size:12px}.history p{font-size:11px;color:var(--m);margin:4px 0 0}.cta{height:48px;width:100%;border:0;border-radius:8px;background:var(--n8);color:#fff;font-weight:800;font-size:14px}.notes{background:#fff;border:1px solid #d9e0e8;border-radius:16px;padding:24px}.notes h1{font-size:25px;margin:0 0 8px;color:var(--n9)}.notes>p,.note p,.note li{font-size:13px;color:var(--s);line-height:1.65}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.note{border:1px solid var(--g2);border-radius:12px;padding:14px}.wide{grid-column:1/-1}.note h3{font-size:13px;color:var(--n8);margin:0 0 7px}.note ul{padding-left:17px;margin:0}.flow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.flow span{background:var(--g1);padding:6px 8px;border-radius:6px;font-size:11px;font-weight:700}.flow i{font-style:normal;color:var(--g4)}
+@media(max-width:1250px){.stage{grid-template-columns:420px 1fr}.phone.detail{display:none}}@media(max-width:850px){.stage{grid-template-columns:1fr;padding:16px}.phone{width:min(100%,420px);margin:auto}.phone.detail{display:block}.notes{width:min(100%,700px);margin:auto}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.bar{flex-direction:column;gap:5px}}
+</style></head><body>
+<header class="bar"><b>TBP PDS · Skill Ladder Wireframe v0.1</b><span>Behavior Based · Evidence Supported · Coach Approved</span></header>
+<main class="stage">
+<section class="phone">
+<header class="appbar"><span class="back">‹</span><strong>Skill</strong><span></span></header>
+<div class="content">
+ <div class="context"><b>김민준 선수</b> · 초2 · 강남 토요일 A반</div>
+ <section class="card">
+  <h2 class="section">현재 Skill</h2>
+  <div class="skill"><div><h3>받기 <span class="changed">최근 변경</span></h3><div class="level">Level 3</div><p>정면으로 오는 공을 잡는다.</p></div><span class="arrow">›</span></div>
+  <div class="skill"><div><h3>던지기</h3><div class="level">Level 2</div><p>옆으로 서서 던진다.</p></div><span class="arrow">›</span></div>
+  <div class="skill"><div><h3>치기</h3><div class="level">Level 3</div><p>토스해 준 공을 맞춘다.</p></div><span class="arrow">›</span></div>
+  <div class="skill"><div><h3>주루</h3><div class="level">Level 2</div><p>1루까지 곧장 뛴다.</p></div><span class="arrow">›</span></div>
+ </section>
+ <section class="card">
+  <h2 class="section">Skill 관리 원칙</h2>
+  <p style="font-size:12px;color:var(--s);line-height:1.6;margin:0">점수가 아닌 실제 행동 기준으로 기록합니다. 최근 수업 기록은 판단 근거이며, 단계는 코치가 최종 승인합니다.</p>
+ </section>
+</div>
+</section>
+
+<section class="phone detail">
+<header class="appbar"><span class="back">‹</span><strong>받기</strong><span></span></header>
+<div class="content">
+ <div class="context"><b>김민준 선수</b> · Skill Detail</div>
+ <section class="current"><div class="eyebrow">현재 단계</div><h1>LEVEL 3</h1><p>정면으로 오는 공을 잡는다.</p><div class="date">변경일 · 9월 22일</div></section>
+
+ <section class="ladder">
+  <h2 class="section">Skill Ladder</h2>
+  <div class="step done"><span class="circle">✓</span><div><h3>Level 1</h3><p>공이 오면 피하거나 눈을 감는다.</p></div></div>
+  <div class="step done"><span class="circle">✓</span><div><h3>Level 2</h3><p>눈을 뜨고 글러브를 공 쪽으로 댄다.</p></div></div>
+  <div class="step now"><span class="circle">●</span><div><h3>Level 3 <span class="nowtag">CURRENT</span></h3><p>정면으로 오는 공을 잡는다.</p></div></div>
+  <div class="step"><span class="circle"></span><div><h3>Level 4</h3><p>옆으로 오는 공과 뜬공까지 잡는다.</p></div></div>
+ </section>
+
+ <section class="card">
+  <div class="head"><h2 class="section">최근 관찰 근거</h2><span class="link">전체 보기 ›</span></div>
+  <div class="evidence"><b>9월 22일 · 강남 토요일 A반</b><p>정면 공을 끝까지 보고 잡음</p><small>5회 중 5회</small></div>
+  <div class="evidence"><b>9월 15일 · 강남 토요일 A반</b><p>정면으로 오는 공 포구</p><small>5회 중 4회</small></div>
+  <div class="evidence"><b>9월 8일 · 강남 토요일 A반</b><p>정면 공 포구 시 글러브 위치가 안정됨</p><small>5회 중 3회</small></div>
+ </section>
+
+ <button class="cta">단계 변경</button>
+
+ <section class="card">
+  <div class="head"><h2 class="section">Skill History</h2></div>
+  <div class="history"><b>9월 22일 · Level 2 → Level 3</b><p>최근 수업에서 반복 확인</p></div>
+  <div class="history"><b>9월 8일 · Level 1 → Level 2</b><p>초기 기본기 수업 확인</p></div>
+ </section>
+</div>
+</section>
+
+<aside class="notes">
+<h1>Skill Ladder 설계 의도</h1>
+<p>명세서의 핵심인 <b>Behavior Based / History First</b>를 그대로 적용했다. 선수 간 비교나 점수화가 아니라, 현재 관찰 가능한 행동을 확인하고 Class Log의 Observation을 근거로 코치가 단계를 승인하는 구조다.</p>
+<div class="grid">
+ <section class="note wide"><h3>01 · 핵심 Flow</h3><div class="flow"><span>Class Log</span><i>→</i><span>Observation 누적</span><i>→</i><span>근거 확인</span><i>→</i><span>코치 판단</span><i>→</i><span>Level 변경</span><i>→</i><span>History 저장</span><i>→</i><span>Monthly Report</span></div></section>
+ <section class="note"><h3>02 · Skill Summary</h3><p>받기·던지기·치기·주루 각각의 <b>Current Level + 행동 기준 + 최근 변경 여부</b>를 보여준다. 카드를 선택하면 해당 Skill Detail로 이동한다.</p></section>
+ <section class="note"><h3>03 · 행동 문장</h3><p>“우수/보통/미흡” 같은 추상 평가 대신 “정면으로 오는 공을 잡는다”처럼 코치와 부모 모두 이해할 수 있는 관찰 행동을 사용한다.</p></section>
+ <section class="note"><h3>04 · Ladder</h3><p>현재 Level을 Blue로 명확하게 강조한다. 이전 Level은 과거 경로로 표시하지만 게임처럼 반드시 순차 통과해야 하는 구조는 아니다.</p></section>
+ <section class="note"><h3>05 · 미평가</h3><p>처음 등록한 선수를 임의로 Level 1로 두지 않는다. 평가하지 않았다면 <b>미평가</b>로 표시하고 CTA는 “초기 단계 설정”으로 변경한다.</p></section>
+ <section class="note"><h3>06 · Evidence</h3><p>해당 Skill의 최근 Observation 3개를 우선 노출한다. 성공 횟수는 존재할 때만 표시하며 Evidence는 자동 승급 공식이 아니다.</p></section>
+ <section class="note"><h3>07 · Level 변경</h3><p>단계 변경 시 새 Level, 행동 기준, 최근 Evidence, 변경 이유를 확인한 후 저장한다. <b>AI나 횟수만으로 자동 변경하지 않는다.</b></p></section>
+ <section class="note"><h3>08 · 하향/건너뛰기</h3><p>Level 3→2 하향과 미평가→3, Level 1→3 같은 건너뛰기도 허용한다. 실패/벌점 표현 없이 현재 관찰 기준의 조정으로 취급한다.</p></section>
+ <section class="note"><h3>09 · 변경 이유</h3><p>명세서 기준 예시는 최근 수업에서 반복 확인 / 초기 평가 / 기준 재평가 / 기타다. 기존 Level 변경 시 이유 입력을 권장한다.</p></section>
+ <section class="note wide"><h3>10 · History First</h3><p>현재 값은 빠른 조회를 위해 별도로 유지할 수 있지만 과거 변경 이력을 덮어쓰면 안 된다. History에는 previous/new level, 변경 시각·코치·이유·메모·Evidence 연결 정보를 보존한다.</p></section>
+ <section class="note"><h3>11 · 나이는 Context</h3><p>학년/연령은 참고 정보일 뿐 Skill Level 결정 규칙이 아니다. 실제 수행 행동을 기준으로 판단한다.</p></section>
+ <section class="note"><h3>12 · 금지 표현</h3><ul><li>선수 간 순위</li><li>종합/평균 점수</li><li>별점</li><li>나이별 강제 Level</li><li>자동 승급</li></ul></section>
+</div>
+</aside>
+</main></body></html>

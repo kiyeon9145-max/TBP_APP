@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDS Round 2 — Players 화면 명세서 v0.1</title>
+<style>
+:root{--navy:#153b56;--blue:#2e6f9e;--pale:#edf5fa;--ink:#17212b;--muted:#667085;--line:#e4e7ec;--bg:#f5f7fa;--green:#16785b;--red:#c83b3b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;line-height:1.65}
+.wrap{max-width:1160px;margin:auto;padding:44px 24px 80px}.hero{background:linear-gradient(135deg,#153b56,#3279aa);color:white;padding:42px;border-radius:24px;box-shadow:0 14px 32px rgba(21,59,86,.15)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;opacity:.8}.hero h1{font-size:36px;line-height:1.2;margin:8px 0}.hero p{max-width:790px;opacity:.9}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.chip{padding:6px 11px;border:1px solid rgba(255,255,255,.28);border-radius:999px;font-size:12px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;margin-top:18px}.card h2{margin:0 0 14px;color:var(--navy);font-size:23px}.card h3{margin:20px 0 8px;font-size:17px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.muted{color:var(--muted)}.callout{background:var(--pale);border-left:4px solid var(--blue);padding:14px 16px;border-radius:8px;margin:14px 0}
+.flow{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.flow span{background:#f8fafc;border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:13px;font-weight:650}.arrow{color:#98a2b3}
+.phone{max-width:390px;margin:20px auto;background:white;border:8px solid #26323b;border-radius:30px;overflow:hidden;box-shadow:0 15px 35px rgba(0,0,0,.12)}.screen{padding:18px}.ph{display:flex;justify-content:space-between;align-items:center;font-size:21px;font-weight:850}.add{font-size:13px;background:var(--navy);color:white;padding:7px 10px;border-radius:9px}.search{background:#f4f6f8;border:1px solid var(--line);padding:11px;border-radius:11px;margin:15px 0;color:#7a8490}.filters{display:flex;gap:7px}.filter{font-size:12px;border:1px solid var(--line);padding:7px 9px;border-radius:9px;background:white}.count{font-size:13px;color:var(--muted);margin:16px 0 7px}.player{border:1px solid var(--line);border-radius:13px;padding:13px;margin:8px 0}.player-top{display:flex;justify-content:space-between}.player strong{font-size:16px}.sub{font-size:12px;color:var(--muted)}.goal{font-size:13px;background:#f6fafc;border-radius:8px;padding:7px 9px;margin-top:8px}.recent{font-size:11px;color:var(--muted);margin-top:6px}.bigadd{text-align:center;border:1px dashed #9bb6c8;color:var(--navy);font-weight:800;padding:10px;border-radius:10px;margin-top:14px}.nav{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:12px 4px 3px;margin-top:18px;font-size:12px}.nav b{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:#f8fafc}.req{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue);font-weight:800;font-size:12px}.tag{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800;background:#eef2f6}.yes{color:var(--green);font-weight:800}.no{color:var(--red);font-weight:800}ul{padding-left:21px}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:32px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.wrap{padding:20px 14px 50px}.hero{padding:28px 22px}.hero h1{font-size:28px}.card{padding:20px}}@media print{body{background:white}.wrap{max-width:none;padding:0}.hero{box-shadow:none}.card{break-inside:avoid}}
+</style></head><body><main class="wrap">
+<header class="hero"><div class="eyebrow">PDS · SCREEN SPECIFICATION · ROUND 2 / 7</div><h1>Players 화면 명세서 v0.1</h1><p>등록 선수를 빠르게 찾고 현재 클래스·목표·최근 기록 상태를 파악한 뒤 Player Detail로 진입하는 선수 성장 관리 허브.</p><div class="chips"><span class="chip">SCR-PLAYERS</span><span class="chip">P0</span><span class="chip">Coach</span><span class="chip">Mobile First</span></div></header>
+
+<section class="card"><h2>1. 화면의 역할</h2><p>Players는 단순 회원 명단이 아니라 <b>“현재 내가 성장 관리를 하고 있는 선수를 찾는 화면”</b>이다.</p><div class="callout"><b>핵심 질문</b><br>① 누구를 관리하고 있나?　② 원하는 선수를 바로 찾을 수 있나?　③ 지금 이 선수의 목표는 무엇인가?　④ 마지막으로 언제 기록했나?</div><p class="muted">목록 화면에서는 상세 Skill, 보호자 연락처, 긴 코치 메모 등 과도한 정보를 노출하지 않는다.</p></section>
+
+<div class="grid"><section class="card"><h2>2. 핵심 Flow</h2><h3>선수 찾기</h3><div class="flow"><span>Players</span><i class="arrow">→</i><span>이름 검색</span><i class="arrow">→</i><span>Player Card</span><i class="arrow">→</i><span>Player Detail</span></div><h3>클래스별 확인</h3><div class="flow"><span>Players</span><i class="arrow">→</i><span>클래스 필터</span><i class="arrow">→</i><span>소속 선수</span></div><h3>신규 등록</h3><div class="flow"><span>Players</span><i class="arrow">→</i><span>+ 선수 등록</span><i class="arrow">→</i><span>Player Create</span></div></section>
+<section class="card"><h2>3. 정보 우선순위</h2><ol><li>Header + 선수 등록</li><li>이름 검색</li><li>클래스 / 상태 필터</li><li>현재 조건의 선수 수</li><li>Player List</li><li>추가 등록 CTA</li><li>Global Navigation</li></ol><p><span class="req">SCR-PLAYERS-001</span> 기본값은 <b>전체 클래스 + 활동 중</b>이다.</p></section></div>
+
+<section class="card"><h2>4. Low-Fidelity Wireframe — Mobile</h2>
+<div class="phone"><div class="screen"><div class="ph"><span>선수</span><span class="add">＋ 등록</span></div><div class="search">🔍 선수 이름 검색</div><div class="filters"><span class="filter">전체 클래스 ▾</span><span class="filter">활동 중 ▾</span></div><div class="count">활동 선수 20명</div>
+<div class="player"><div class="player-top"><strong>김민준 선수</strong><span>›</span></div><div class="sub">초2 · 강남 토요일 A반</div><div class="goal">🎯 반대발 내딛고 던지기</div><div class="recent">최근 기록 · 9/22</div></div>
+<div class="player"><div class="player-top"><strong>이서준 선수</strong><span>›</span></div><div class="sub">초4 · 강남 토요일 A반</div><div class="goal">🎯 좌우 이동 후 포구</div><div class="recent">최근 기록 · 9/21</div></div>
+<div class="player"><div class="player-top"><strong>박지호 선수</strong><span>›</span></div><div class="sub">7세 · 강남 토요일 B반</div><div class="goal">🎯 토스 공을 앞으로 보내기</div><div class="recent">최근 기록 · 9/20</div></div>
+<div class="bigadd">＋ 선수 등록</div><div class="nav"><span>홈</span><b>선수</b><span>수업</span><span>리포트</span></div></div></div>
+<div class="callout"><b>Player Card 핵심</b> · 이름 → 클래스/학년 → 현재 목표 → 최근 기록일. 목록에서 성장 상태를 짧게 파악하고 상세 내용은 Player Detail에서 확인한다.</div></section>
+
+<section class="card"><h2>5. 컴포넌트 명세</h2><table><thead><tr><th>ID</th><th>컴포넌트</th><th>표시 정보</th><th>Action</th></tr></thead><tbody>
+<tr><td class="req">CMP-PLAYERS-001</td><td>Header</td><td>선수, + 등록</td><td>Player Create</td></tr>
+<tr><td class="req">CMP-PLAYERS-002</td><td>Search</td><td>선수 이름</td><td>부분 일치 검색</td></tr>
+<tr><td class="req">CMP-PLAYERS-003</td><td>Filter</td><td>클래스, 상태</td><td>목록 갱신</td></tr>
+<tr><td class="req">CMP-PLAYERS-004</td><td>Summary</td><td>현재 조건 선수 수</td><td>-</td></tr>
+<tr><td class="req">CMP-PLAYERS-005</td><td>Player Card</td><td>이름, 학년/연령, 클래스, 목표, 최근 기록일</td><td>Player Detail</td></tr>
+<tr><td class="req">CMP-PLAYERS-006</td><td>Add Player CTA</td><td>+ 선수 등록</td><td>Player Create</td></tr>
+<tr><td class="req">CMP-PLAYERS-007</td><td>Navigation</td><td>홈·선수·수업·리포트</td><td>주요 화면 이동</td></tr>
+</tbody></table></section>
+
+<div class="grid"><section class="card"><h2>6. 검색 / 필터 정책</h2><h3>검색</h3><p>이름 부분 일치 · 앞뒤 공백 제거 · 한글 지원.</p><h3>필터</h3><p><span class="tag">전체 클래스</span> + <span class="tag">활동 중</span> 기본.</p><p>상태: 활동 중 / 비활성 / 전체</p><h3>정렬</h3><p><b>이름 가나다순</b>을 MVP 기본으로 사용한다.</p></section>
+<section class="card"><h2>7. 선수 상태</h2><p><span class="tag">active</span> 현재 성장 관리 대상이며 기본 목록에 노출.</p><p><span class="tag">inactive</span> 퇴원·장기 휴원 등. 기본 목록에서는 숨기지만 필터로 조회 가능.</p><div class="callout"><b>삭제 대신 비활성</b><br>수업기록·Skill·영상·리포트·Goal History를 보존한다.</div></section></div>
+
+<section class="card"><h2>8. Player Card에 보여줄 것 / 숨길 것</h2><table><thead><tr><th class="yes">표시</th><th class="no">목록에서 제외</th></tr></thead><tbody><tr><td>선수 이름 + 선수 호칭<br>학년 또는 연령<br>현재 클래스<br>현재 목표 1개<br>최근 기록 날짜</td><td>보호자 연락처<br>긴 코치 메모<br>민감한 특이사항<br>Skill 4개 상세<br>모든 최근 기록<br>결제 상태</td></tr></tbody></table></section>
+
+<section class="card"><h2>9. Empty / Error</h2><table><thead><tr><th>상황</th><th>표시</th><th>Action</th></tr></thead><tbody>
+<tr><td>등록 선수 0명</td><td>아직 등록된 선수가 없습니다.</td><td>첫 선수 등록</td></tr>
+<tr><td>검색 결과 0명</td><td>검색어와 일치하는 선수가 없습니다.</td><td>검색어 지우기</td></tr>
+<tr><td>필터 결과 0명</td><td>선택한 조건에 해당하는 선수가 없습니다.</td><td>필터 초기화</td></tr>
+<tr><td>목록 로드 실패</td><td>선수 목록을 불러오지 못했습니다.</td><td>다시 시도</td></tr>
+<tr><td>현재 목표 없음</td><td>현재 목표 미설정</td><td>Detail에서 설정</td></tr>
+<tr><td>최근 기록 없음</td><td>기록 없음</td><td>-</td></tr>
+</tbody></table></section>
+
+<section class="card"><h2>10. 데이터 요구사항</h2><p><b>Player</b> · id / name / birth_date 또는 grade / status / current_goal_id</p><p><b>Current Class Membership</b> · player_id / class_id / class_name / membership_status</p><p><b>Goal</b> · 현재 Goal 1개</p><p><b>Recent Observation</b> · 최근 observed_at</p><div class="callout"><b>목록 Query 원칙</b> · Player Detail 전체 데이터를 가져오지 않고 Player Card에 필요한 최소 데이터만 조회한다.</div></section>
+
+<div class="grid"><section class="card"><h2>11. MVP 포함</h2><ul><li>활동 선수 목록</li><li>이름 검색</li><li>클래스 필터</li><li>active/inactive 필터</li><li>가나다순</li><li>현재 목표</li><li>최근 기록일</li><li>Detail 진입</li><li>신규 등록 진입</li><li>Empty/Error</li></ul></section>
+<section class="card"><h2>12. MVP 제외</h2><ul><li>일괄 편집</li><li>보호자 연락처 검색</li><li>태그 시스템</li><li>즐겨찾기</li><li>복잡한 정렬</li><li>선수 비교/점수</li><li>CSV 대량 업로드</li><li>영구 삭제</li><li>결제 상태</li></ul></section></div>
+
+<section class="card"><h2>13. Acceptance Criteria</h2><table><thead><tr><th>ID</th><th>완료 기준</th></tr></thead><tbody>
+<tr><td class="req">AC-PLAYERS-001</td><td>기본 목록에는 active 선수만 표시.</td></tr>
+<tr><td class="req">AC-PLAYERS-002</td><td>이름 일부 검색 시 일치 선수만 표시.</td></tr>
+<tr><td class="req">AC-PLAYERS-003</td><td>클래스 필터 시 현재 소속 선수만 표시.</td></tr>
+<tr><td class="req">AC-PLAYERS-004</td><td>비활성 필터 시 inactive 선수만 표시.</td></tr>
+<tr><td class="req">AC-PLAYERS-005</td><td>카드에서 이름·학년/연령·클래스·목표·최근 기록일 확인.</td></tr>
+<tr><td class="req">AC-PLAYERS-006</td><td>카드 탭 시 올바른 player_id의 Detail 진입.</td></tr>
+<tr><td class="req">AC-PLAYERS-007</td><td>inactive 전환 후에도 과거 데이터 보존.</td></tr>
+<tr><td class="req">AC-PLAYERS-008</td><td>검색 결과 없음은 정상 Empty State 처리.</td></tr>
+<tr><td class="req">AC-PLAYERS-009</td><td>선수 0명일 때 첫 등록 CTA 제공.</td></tr>
+<tr><td class="req">AC-PLAYERS-010</td><td>모바일 가로 스크롤 없이 핵심 기능 사용.</td></tr>
+<tr><td class="req">AC-PLAYERS-011</td><td>Goal 없음에도 UI 정상 + 미설정 상태 표시.</td></tr>
+<tr><td class="req">AC-PLAYERS-012</td><td>Observation 없음에도 UI 정상 + 기록 없음 표시.</td></tr>
+</tbody></table></section>
+
+<section class="card"><h2>14. Round 2 결정사항</h2><div class="callout"><b>Players = 성장 관리 대상 탐색 화면</b><br>이름을 찾고, 현재 목표를 확인하고, Player Detail로 들어가는 데 집중한다.</div><ul><li>기본: 활동 중 + 전체 클래스</li><li>검색: 선수 이름</li><li>필터: 클래스 + 상태</li><li>정렬: 가나다순</li><li>퇴원/휴원: 삭제 대신 inactive</li><li>상세 성장 데이터는 Round 3에서 정의</li></ul></section>
+
+<div class="footer">PDS Player Development System · Round 2 / 7 · Players Screen Specification v0.1</div></main></body></html>

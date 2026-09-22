@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TBP PDS Design System v0.1</title>
+<style>
+:root{
+--navy900:#071E3A;--navy800:#0B2A4A;--navy700:#123B63;
+--blue600:#1546F5;--blue500:#2D5BFF;--blue100:#E8EEFF;
+--orange500:#FF7A1A;--orange100:#FFF0E5;
+--g950:#111827;--g800:#1F2937;--g700:#374151;--g600:#4B5563;--g500:#6B7280;--g400:#9CA3AF;--g300:#D1D5DB;--g200:#E5E7EB;--g100:#F3F4F6;--g50:#F8FAFC;
+--success:#16805D;--successbg:#EAF7F2;--warning:#B96800;--warningbg:#FFF4E5;--error:#C9362B;--errorbg:#FFF0EE;
+}
+*{box-sizing:border-box}body{margin:0;background:var(--g50);color:var(--g950);font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}.wrap{max-width:1220px;margin:auto;padding:40px 22px 80px}.hero{background:var(--navy900);color:white;border-radius:24px;padding:44px;position:relative;overflow:hidden}.hero:after{content:"TBP";position:absolute;right:24px;bottom:-35px;font-size:150px;font-weight:900;color:rgba(255,255,255,.035);font-style:italic}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.15em;color:#b9c9d8}.hero h1{font-size:38px;line-height:1.15;margin:8px 0}.hero p{max-width:800px;color:#dbe5ee}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.hero .chip{border:1px solid rgba(255,255,255,.22);color:white;background:transparent}.card{background:white;border:1px solid var(--g200);border-radius:16px;padding:26px;margin-top:18px}.card h2{font-size:23px;margin:0 0 16px;color:var(--navy800)}.card h3{font-size:17px;margin:22px 0 10px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.muted{color:var(--g600)}.callout{background:#F1F6FA;border-left:4px solid var(--navy800);padding:14px 16px;border-radius:8px;margin:14px 0}.orange-callout{background:var(--orange100);border-left-color:var(--orange500)}.swatch{border:1px solid var(--g200);border-radius:12px;overflow:hidden}.swatch-color{height:84px}.swatch-info{padding:10px;font-size:12px}.swatch-info b{display:block}.type-row{display:grid;grid-template-columns:120px 1fr 170px;border-bottom:1px solid var(--g200);padding:12px 0;align-items:center}.display{font-size:32px;font-weight:700}.h1{font-size:28px;font-weight:700}.h2{font-size:24px;font-weight:700}.h3{font-size:20px;font-weight:700}.title{font-size:18px;font-weight:700}.bodyl{font-size:16px}.bodym{font-size:14px}.caption{font-size:12px}.space-row{display:flex;align-items:center;gap:12px;margin:8px 0;font-size:12px}.space-box{height:18px;background:var(--blue100);border-right:3px solid var(--blue600)}.btns{display:flex;gap:10px;flex-wrap:wrap}.btn{height:48px;border-radius:8px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;border:1px solid transparent}.primary{background:var(--navy800);color:white}.secondary{background:white;border-color:var(--g300);color:var(--navy800)}.ghost{background:transparent;color:var(--navy800)}.danger{background:var(--error);color:white}.disabled{background:var(--g100);color:var(--g400)}.field{max-width:430px;margin:12px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}.input{height:48px;border:1px solid var(--g300);border-radius:8px;padding:0 13px;display:flex;align-items:center;color:var(--g500);background:white}.input.focus{border:2px solid var(--blue500);box-shadow:0 0 0 3px var(--blue100)}.textarea{height:100px;align-items:flex-start;padding-top:12px}.error-input{border-color:var(--error)}.helper{font-size:12px;color:var(--g500);margin-top:5px}.error-text{color:var(--error)}.chip{display:inline-flex;align-items:center;height:34px;border:1px solid var(--g300);border-radius:999px;padding:0 12px;font-size:13px;font-weight:650;background:white;color:var(--g700)}.chip.active{background:var(--blue100);border-color:var(--blue600);color:var(--blue600)}.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:800;background:var(--g100);color:var(--g700)}.approved{background:var(--successbg);color:var(--success)}.draft{background:var(--warningbg);color:var(--warning)}.bad{background:var(--errorbg);color:var(--error)}.demo-card{border:1px solid var(--g200);border-radius:12px;padding:16px;background:white}.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.avatar{width:44px;height:44px;border-radius:50%;background:var(--blue100);color:var(--blue600);display:flex;align-items:center;justify-content:center;font-weight:800}.meta{font-size:12px;color:var(--g500)}.goal{font-size:13px;margin-top:8px;color:var(--g700)}.goal b{color:var(--navy800)}.progress{height:8px;background:var(--g100);border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:var(--blue600);width:70%}.skill{border:1px solid var(--g200);border-radius:12px;padding:16px}.level{font-size:26px;font-weight:800;color:var(--navy800)}.steps{display:flex;align-items:center;margin:15px 0}.dot{width:12px;height:12px;border-radius:50%;background:var(--g300)}.dot.on{background:var(--blue600);box-shadow:0 0 0 4px var(--blue100)}.line{height:2px;flex:1;background:var(--g300)}.line.on{background:var(--blue600)}.phone{width:360px;max-width:100%;margin:20px auto;border:7px solid #1b2732;border-radius:28px;background:white;overflow:hidden;box-shadow:0 12px 30px rgba(15,23,42,.12)}.phone-head{height:56px;background:var(--navy900);color:white;padding:0 16px;display:flex;align-items:center;justify-content:space-between;font-weight:700}.phone-body{padding:16px;background:var(--g50);min-height:520px}.bottomnav{height:64px;border-top:1px solid var(--g200);background:white;display:grid;grid-template-columns:repeat(4,1fr);font-size:11px;text-align:center}.navitem{display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--g500);gap:3px}.navitem.active{color:var(--navy800);font-weight:800}.icon{font-size:18px}.obs{border:1px solid var(--g200);background:white;border-radius:12px;padding:14px;margin:10px 0}.obs p{font-size:13px;margin:8px 0}.sticky{background:white;border-top:1px solid var(--g200);padding:10px 16px}.report{max-width:610px;margin:20px auto;border:1px solid var(--g300);background:white;padding:28px;box-shadow:0 4px 12px rgba(15,23,42,.06)}.report h3{color:var(--navy800);font-size:20px;border-bottom:2px solid var(--navy800);padding-bottom:10px}.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px}.photo{height:110px;background:var(--g100);display:flex;align-items:center;justify-content:center;color:var(--g500);border-radius:8px}.report h4{color:var(--navy800);margin:14px 0 4px}.report p{font-size:12px;margin:3px 0}.nextgoal{border-left:4px solid var(--orange500);background:var(--orange100);padding:9px 12px}.state{padding:14px;border-radius:10px;margin:8px 0;font-size:13px}.success{background:var(--successbg);color:var(--success)}.warning{background:var(--warningbg);color:var(--warning)}.error{background:var(--errorbg);color:var(--error)}.tokens{background:#111b23;color:#dce8ef;border-radius:12px;padding:18px;overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.55}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--g200);vertical-align:top}th{background:var(--g50)}.footer{text-align:center;color:var(--g500);font-size:12px;margin-top:30px}@media(max-width:800px){.grid2,.grid3,.grid4{grid-template-columns:1fr}.wrap{padding:18px 12px 50px}.hero{padding:28px 20px}.hero h1{font-size:29px}.card{padding:19px}.type-row{grid-template-columns:90px 1fr}.type-row>span:last-child{display:none}}
+</style>
+</head><body><main class="wrap">
+<header class="hero"><div class="eyebrow">TBP BASEBALL · PLAYER DEVELOPMENT SYSTEM</div><h1>Design System v0.1</h1><p>현장에서 빠르게 기록하는 코치용 스포츠 도구와 부모가 이해하기 쉬운 성장 리포트를 하나의 TBP 브랜드 언어로 연결한다.</p><div class="chips"><span class="chip">Professional Sports</span><span class="chip">Youth Development</span><span class="chip">Evidence Based</span><span class="chip">Mobile First</span></div></header>
+
+<section class="card"><h2>01. Design Principles</h2><div class="grid3"><div class="demo-card"><b>Fast on Field</b><p class="muted">운동장에서 한 손으로 빠르게. Class Log는 20~30초 내 입력.</p></div><div class="demo-card"><b>Evidence over Impression</b><p class="muted">“잘했어요”보다 실제 행동과 관찰 기록을 먼저 보여준다.</p></div><div class="demo-card"><b>Professional, not Cold</b><p class="muted">스포츠 퍼포먼스 도구의 전문성에 유소년 브랜드의 친근함을 더한다.</p></div></div><div class="callout"><b>Brand sentence</b><br>선수의 성장을 기록하는 TBP의 코칭 시스템.</div></section>
+
+<section class="card"><h2>02. Brand Color</h2><p class="muted">제공된 TBP 마크의 시각적 방향을 UI Token으로 정리한 v0.1. 공식 원본 컬러값 확보 시 Brand Token만 교체한다.</p><div class="grid4">
+<div class="swatch"><div class="swatch-color" style="background:#071E3A"></div><div class="swatch-info"><b>Navy 900</b>#071E3A</div></div>
+<div class="swatch"><div class="swatch-color" style="background:#0B2A4A"></div><div class="swatch-info"><b>Navy 800</b>#0B2A4A</div></div>
+<div class="swatch"><div class="swatch-color" style="background:#1546F5"></div><div class="swatch-info"><b>TBP Blue 600</b>#1546F5</div></div>
+<div class="swatch"><div class="swatch-color" style="background:#FF7A1A"></div><div class="swatch-info"><b>TBP Orange 500</b>#FF7A1A</div></div>
+</div><h3>Semantic</h3><div class="grid4"><div class="swatch"><div class="swatch-color" style="background:#16805D"></div><div class="swatch-info"><b>Success</b>#16805D</div></div><div class="swatch"><div class="swatch-color" style="background:#B96800"></div><div class="swatch-info"><b>Warning</b>#B96800</div></div><div class="swatch"><div class="swatch-color" style="background:#C9362B"></div><div class="swatch-info"><b>Error</b>#C9362B</div></div><div class="swatch"><div class="swatch-color" style="background:#F8FAFC;border-bottom:1px solid #eee"></div><div class="swatch-info"><b>Background</b>#F8FAFC</div></div></div><div class="callout orange-callout"><b>Orange Rule</b><br>오렌지는 TBP의 강한 브랜드 포인트다. Next Goal, 작은 강조, 부모 리포트 포인트 등에 제한적으로 사용하고 Primary CTA 전체를 오렌지로 만들지 않는다.</div></section>
+
+<section class="card"><h2>03. Typography</h2><div class="type-row"><b>Display</b><span class="display">선수의 성장 기록</span><span class="muted">32 / 700</span></div><div class="type-row"><b>H1</b><span class="h1">오늘 수업</span><span class="muted">28 / 700</span></div><div class="type-row"><b>H2</b><span class="h2">선수 관리</span><span class="muted">24 / 700</span></div><div class="type-row"><b>H3</b><span class="h3">현재 목표</span><span class="muted">20 / 700</span></div><div class="type-row"><b>Title</b><span class="title">김민준 선수</span><span class="muted">18 / 700</span></div><div class="type-row"><b>Body L</b><span class="bodyl">정면으로 오는 공을 잡습니다.</span><span class="muted">16 / 400</span></div><div class="type-row"><b>Body M</b><span class="bodym">9월 22일 · 받기</span><span class="muted">14 / 400</span></div><div class="type-row"><b>Caption</b><span class="caption">최근 기록 9/22</span><span class="muted">12 / 400</span></div></section>
+
+<section class="card"><h2>04. Spacing & Shape</h2><div class="grid2"><div><h3>4px Grid</h3>
+<div class="space-row"><span>4</span><div class="space-box" style="width:4px"></div></div><div class="space-row"><span>8</span><div class="space-box" style="width:8px"></div></div><div class="space-row"><span>16</span><div class="space-box" style="width:16px"></div></div><div class="space-row"><span>24</span><div class="space-box" style="width:24px"></div></div><div class="space-row"><span>32</span><div class="space-box" style="width:32px"></div></div><div class="space-row"><span>48</span><div class="space-box" style="width:48px"></div></div></div><div><h3>Radius</h3><p><span class="badge">6px Small</span> <span class="badge">8px Control</span> <span class="badge">12px Card</span> <span class="badge">16px Modal</span></p><h3>Touch</h3><p>최소 44×44px · 핵심 Button/Input 48px</p><h3>Shadow</h3><p class="muted">Border 중심. 강한 그림자는 Modal/Sheet 등 계층이 필요한 경우에만.</p></div></div></section>
+
+<section class="card"><h2>05. Buttons</h2><div class="btns"><div class="btn primary">저장하고 다음</div><div class="btn secondary">미리보기</div><div class="btn ghost">취소</div><div class="btn danger">기록 삭제</div><div class="btn disabled">저장</div></div><div class="callout">Primary는 화면의 가장 중요한 행동 하나에 우선 사용한다. 한 Card에 강한 CTA를 여러 개 배치하지 않는다.</div></section>
+
+<section class="card"><h2>06. Form Controls</h2><div class="grid2"><div><div class="field"><label>선수 이름</label><div class="input">김민준</div></div><div class="field"><label>현재 목표</label><div class="input focus">좌우 이동 후 포구</div><div class="helper">선수의 대표 목표는 1개만 설정합니다.</div></div><div class="field"><label>시도 횟수</label><div class="input error-input">3</div><div class="helper error-text">성공 횟수보다 작을 수 없습니다.</div></div></div><div><div class="field"><label>관찰 기록</label><div class="input textarea">정면으로 오는 공 5회 중 4회 포구</div><div class="helper">보이는 행동을 구체적으로 기록하세요.</div></div><h3>Skill Chips</h3><div class="btns"><span class="chip active">받기</span><span class="chip">던지기</span><span class="chip">치기</span><span class="chip">주루</span></div></div></div></section>
+
+<section class="card"><h2>07. Status & Feedback</h2><p><span class="badge">미작성</span> <span class="badge draft">Draft</span> <span class="badge approved">승인 완료</span> <span class="badge bad">오류</span></p><div class="grid3"><div class="state success"><b>저장 완료</b><br>김민준 선수의 기록을 저장했습니다.</div><div class="state warning"><b>기록 필요</b><br>출석 선수 2명의 기록이 없습니다.</div><div class="state error"><b>업로드 실패</b><br>영상만 다시 업로드할 수 있습니다.</div></div></section>
+
+<section class="card"><h2>08. Domain Components</h2><div class="grid2"><div><h3>Player Card</h3><div class="demo-card"><div class="row"><div style="display:flex;gap:12px;align-items:center"><div class="avatar">민</div><div><b>김민준</b><div class="meta">초3 · 토요일 A반</div></div></div><b>›</b></div><div class="goal"><b>현재 목표</b> · 좌우 이동 후 포구</div><div class="meta" style="margin-top:6px">최근 기록 9/22</div></div><h3>Observation Card</h3><div class="obs"><div class="row"><span class="badge">받기</span><span class="meta">9/22</span></div><p><b>정면으로 오는 공 5회 중 4회 포구</b></p><div class="meta">시도 5 · 성공 4 · 영상 1</div></div></div><div><h3>Class Card</h3><div class="demo-card"><div class="row"><div><b>토요일 A반</b><div class="meta">10:00–11:00 · 8명</div></div><span class="badge draft">진행 중</span></div><p>오늘 7명 출석 · 기록 5/7</p><div class="progress"><span></span></div><div class="btn primary" style="margin-top:12px;width:100%">수업 기록 계속</div></div><h3>Skill Level</h3><div class="skill"><div class="row"><div><b>받기</b><div class="level">L3</div></div><span class="badge approved">현재 단계</span></div><div class="steps"><span class="dot"></span><span class="line on"></span><span class="dot"></span><span class="line on"></span><span class="dot on"></span><span class="line"></span><span class="dot"></span></div><p class="bodym"><b>정면으로 오는 공을 잡는다.</b></p></div></div></div></section>
+
+<section class="card"><h2>09. Mobile Navigation & Class Log Example</h2><div class="phone"><div class="phone-head"><span>‹</span><span>수업 기록</span><span>3/7</span></div><div class="phone-body"><div class="meta">토요일 A반 · 9월 22일</div><h3 style="margin:8px 0">김민준 선수</h3><div class="goal"><b>현재 목표</b> · 좌우 이동 후 포구</div><h3>무엇을 관찰했나요?</h3><div class="btns"><span class="chip active">받기</span><span class="chip">던지기</span><span class="chip">치기</span><span class="chip">주루</span></div><div class="field"><label>관찰 기록</label><div class="input textarea">정면으로 오는 공 5회 중 4회 포구</div></div><div class="grid2" style="gap:8px"><div class="field"><label>시도</label><div class="input">5</div></div><div class="field"><label>성공</label><div class="input">4</div></div></div><div class="btn secondary" style="width:100%">＋ 영상/사진 추가</div></div><div class="sticky"><div class="btn primary" style="width:100%">저장하고 다음</div></div><div class="bottomnav"><div class="navitem"><span class="icon">⌂</span>홈</div><div class="navitem"><span class="icon">♙</span>선수</div><div class="navitem active"><span class="icon">▣</span>수업</div><div class="navitem"><span class="icon">▤</span>리포트</div></div></div></section>
+
+<section class="card"><h2>10. Monthly Report Visual Language</h2><div class="report"><h3>김민준 선수 · 9월 기본기 리포트</h3><div class="photos"><div class="photo">BEFORE · 9/08</div><div class="photo">AFTER · 9/22</div></div><h4>이번 달 Skill</h4><div class="grid2" style="gap:6px"><span class="badge">받기 L2 → L3</span><span class="badge">던지기 L2 → L3</span><span class="badge">치기 L3 유지</span><span class="badge">주루 L2 유지</span></div><h4>이번 달 발견</h4><p>9월 22일 정면으로 오는 공을 5번 중 5번 잡았습니다.</p><h4>지금 연습하고 있어요</h4><p>좌우로 움직인 뒤 공을 잡는 연습을 하고 있습니다.</p><h4>다음 달 목표</h4><div class="nextgoal"><b>좌우 이동 후 포구</b></div><h4>가족과 5분 야구</h4><p>2~3m 거리에서 좌우로 한 걸음씩 움직인 뒤 공을 받아보세요.</p><h4>코치 한마디</h4><p>다음 달에는 움직이면서도 같은 포구 동작을 이어갈 수 있도록 수업하겠습니다.</p></div><div class="callout orange-callout">Parent Output은 Coach UI보다 여백을 넓게 사용하고, Orange는 Next Goal과 브랜드 포인트에 제한적으로 활용한다.</div></section>
+
+<section class="card"><h2>11. Loading / Empty / Error</h2><div class="grid3"><div class="demo-card"><b>Loading</b><p class="muted">List는 Skeleton, Button action은 Button loading. 전체 화면 spinner 남용 금지.</p></div><div class="demo-card"><b>Empty</b><p>아직 등록된 선수가 없어요.</p><div class="btn primary">선수 등록</div><p class="muted">Mascot 사용 가능 영역.</p></div><div class="demo-card"><b>Error</b><p>수업 기록을 불러오지 못했습니다.</p><div class="btn secondary">다시 시도</div></div></div></section>
+
+<section class="card"><h2>12. Accessibility & Field UX</h2><div class="grid2"><ul><li>최소 터치 영역 44×44px</li><li>Body text WCAG AA 대비 목표</li><li>Color만으로 상태 구분 금지</li><li>명확한 Focus 표시</li><li>Form Label 필수</li></ul><ul><li>Hover 의존 금지</li><li>Error는 field 주변에도 표시</li><li>이미지 alt 제공</li><li>모바일 가로 스크롤 지양</li><li>Motion 감소 설정 고려</li></ul></div></section>
+
+<section class="card"><h2>13. Component Architecture</h2><div class="grid2"><div><h3>Base UI</h3><pre class="tokens">components/ui/
+  Button
+  IconButton
+  Input
+  Textarea
+  Select
+  Chip
+  Badge
+  Card
+  Modal
+  BottomSheet
+  Toast
+  EmptyState
+  Skeleton</pre></div><div><h3>PDS Domain</h3><pre class="tokens">components/pds/
+  PlayerCard
+  ClassCard
+  ObservationCard
+  MediaCard
+  AttendanceControl
+  SkillLevel
+  SkillProgress
+  SkillChangeDialog
+  ReportStatusBadge
+  ReportSection
+  EvidenceDrawer</pre></div></div></section>
+
+<section class="card"><h2>14. Design Tokens</h2><pre class="tokens">:root {
+  --color-navy-900: #071E3A;
+  --color-navy-800: #0B2A4A;
+  --color-navy-700: #123B63;
+
+  --color-blue-600: #1546F5;
+  --color-blue-500: #2D5BFF;
+  --color-blue-100: #E8EEFF;
+
+  --color-orange-500: #FF7A1A;
+  --color-orange-100: #FFF0E5;
+
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text: #111827;
+  --color-text-secondary: #4B5563;
+  --color-border: #E5E7EB;
+
+  --color-success: #16805D;
+  --color-warning: #B96800;
+  --color-error: #C9362B;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+}</pre></section>
+
+<section class="card"><h2>15. Wireframe Component Map</h2><table><thead><tr><th>Screen</th><th>핵심 Component</th></tr></thead><tbody><tr><td>Dashboard</td><td>ClassCard · Progress · ReportStatus</td></tr><tr><td>Players</td><td>Search · FilterChip · PlayerCard</td></tr><tr><td>Player Detail</td><td>GoalCard · Tabs · ObservationCard · SkillLevel · MediaCard</td></tr><tr><td>Classes</td><td>ClassCard · AttendanceControl · SessionCard</td></tr><tr><td>Class Log</td><td>SkillChip · Textarea · CountInput · MediaAttach · StickyCTA</td></tr><tr><td>Skill Ladder</td><td>SkillLevel · SkillProgress · EvidenceCard · SkillChangeDialog</td></tr><tr><td>Monthly Report</td><td>ReportStatusBadge · MediaPicker · SkillChangeSummary · EvidenceDrawer · ReportSection</td></tr></tbody></table></section>
+
+<section class="card"><h2>16. Do / Don't</h2><div class="grid2"><div><h3>Do</h3><ul><li>Navy = 구조 / Primary Action</li><li>Blue = Active / Selected</li><li>Orange = 제한적 강조</li><li>실제 Observation 중심</li><li>모바일 한 손 조작</li><li>충분한 White Space</li></ul></div><div><h3>Don't</h3><ul><li>화면 전체 Vivid Blue</li><li>Orange CTA 남발</li><li>모든 요소 Pill</li><li>야구 장식 남발</li><li>Skill 점수화/랭킹</li><li>Desktop Table을 Mobile에 그대로 축소</li></ul></div></div></section>
+
+<section class="card"><h2>17. Definition of Done</h2><p>이 Design System v0.1에서 Brand Color, Typography, Spacing, Shape, Interaction, Base Component, PDS Domain Component, State, Accessibility, Mobile Rule까지 정의했다.</p><div class="callout"><b>다음 단계</b><br>이 시스템을 그대로 사용해 Dashboard부터 Monthly Report까지 7개 화면의 Low/Mid Fidelity Wireframe을 제작한다. 화면에서 새로운 패턴이 필요하면 임의 스타일을 만들기보다 Design System에 추가 여부를 먼저 판단한다.</div></section>
+
+<div class="footer">TBP Baseball · Player Development System · Design System v0.1</div>
+</main></body></html>

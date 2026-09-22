@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TBP PDS Classes Wireframe v0.1</title>
+<style>
+:root{
+ --navy900:#071E3A;--navy800:#0B2A4A;--navy700:#123B63;
+ --blue600:#1546F5;--blue500:#2D5BFF;--blue100:#E8EEFF;
+ --orange:#FF7A1A;--orange100:#FFF0E5;
+ --white:#FFFFFF;--bg:#F8FAFC;--text:#111827;--sub:#4B5563;
+ --muted:#6B7280;--g400:#9CA3AF;--g300:#D1D5DB;--g200:#E5E7EB;--g100:#F3F4F6;
+ --success:#16805D;--successbg:#EAF7F2;--warning:#B96800;--warningbg:#FFF4E5;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#e9edf2;color:var(--text);font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit}
+.docbar{background:var(--navy900);color:#fff;padding:14px 22px;display:flex;justify-content:space-between;gap:16px}
+.docbar b{font-size:15px}.docbar span{font-size:12px;opacity:.76}
+.stage{max-width:1380px;margin:0 auto;padding:28px;display:grid;grid-template-columns:minmax(360px,420px) 1fr;gap:28px;align-items:start}
+.phone{background:var(--bg);border:1px solid #cfd6df;border-radius:28px;overflow:hidden;box-shadow:0 12px 28px rgba(15,23,42,.12);min-height:880px;position:sticky;top:24px}
+.app{padding-bottom:78px}
+.header{background:#fff;border-bottom:1px solid var(--g200);padding:18px 16px 15px}
+.brandrow{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;gap:9px;align-items:center;font-weight:800;color:var(--navy900)}
+.mark{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--navy900);color:#fff;font-size:11px;font-weight:800;border:3px solid #fff;box-shadow:0 0 0 2px var(--navy900)}
+.profile{width:44px;height:44px;border:1px solid var(--g200);background:#fff;border-radius:50%;display:grid;place-items:center;font-weight:800;color:var(--navy800)}
+.title-row{margin-top:20px;display:flex;justify-content:space-between;align-items:center}
+.title-row h1{margin:0;font-size:22px;color:var(--navy900)}
+.add{height:44px;padding:0 14px;border:0;border-radius:8px;background:var(--navy800);color:#fff;font-weight:800}
+.content{padding:16px;display:flex;flex-direction:column;gap:16px}
+.section-title{font-size:15px;font-weight:800;color:var(--navy900);margin:0}
+.today{background:var(--navy800);border-radius:12px;color:#fff;padding:16px}
+.today-top{display:flex;justify-content:space-between;align-items:start}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.04em;opacity:.72}
+.time{font-size:24px;font-weight:800;margin-top:5px}
+.class-name{font-size:17px;font-weight:800;margin-top:2px}
+.today-meta{font-size:12px;opacity:.72;margin-top:6px}
+.badge-live{background:#fff;color:var(--navy800);font-size:10px;padding:5px 7px;border-radius:6px;font-weight:800}
+.today-action{width:100%;height:44px;border:0;border-radius:8px;background:#fff;color:var(--navy800);font-weight:800;margin-top:14px}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.metric{background:#fff;border:1px solid var(--g200);border-radius:10px;padding:12px}
+.metric span{display:block;font-size:11px;color:var(--muted);font-weight:700}.metric b{display:block;margin-top:5px;font-size:17px;color:var(--navy900)}
+.list-head{display:flex;justify-content:space-between;align-items:center}
+.list-head span{font-size:12px;color:var(--muted)}
+.list{display:flex;flex-direction:column;gap:10px}
+.class-card{background:#fff;border:1px solid var(--g200);border-radius:12px;padding:16px}
+.card-top{display:grid;grid-template-columns:1fr auto;gap:10px}
+.class-card h2{font-size:16px;color:var(--navy900);margin:0}
+.schedule{font-size:12px;color:var(--muted);margin-top:4px}
+.status{font-size:10px;padding:4px 7px;border-radius:6px;font-weight:800;align-self:start}
+.status.active{color:var(--success);background:var(--successbg)}
+.status.today-status{color:var(--blue600);background:var(--blue100)}
+.card-info{margin-top:14px;padding-top:12px;border-top:1px solid var(--g100);display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.info-label{font-size:10px;color:var(--muted);font-weight:700}.info-value{font-size:12px;font-weight:800;margin-top:3px;color:var(--sub)}
+.card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:13px}
+.next{font-size:11px;color:var(--muted)}.open{font-size:12px;color:var(--blue600);font-weight:800}
+.bottom{position:absolute;left:0;right:0;bottom:0;height:68px;background:#fff;border-top:1px solid var(--g200);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:4px}
+.nav{font-size:11px;color:var(--muted);display:grid;place-items:center;align-content:center;gap:4px}
+.nav svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.8}.nav.active{color:var(--blue600);font-weight:800}
+.notes{background:#fff;border:1px solid #d9e0e8;border-radius:16px;padding:24px}
+.notes h1{font-size:26px;margin:0 0 8px;color:var(--navy900)}
+.notes>p{margin:0 0 24px;color:var(--sub);line-height:1.65}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.note{border:1px solid var(--g200);border-radius:12px;padding:16px}.wide{grid-column:1/-1}
+.note h3{font-size:14px;margin:0 0 8px;color:var(--navy800)}.note p,.note li{font-size:13px;color:var(--sub);line-height:1.65}.note ul{padding-left:18px;margin:0}
+.flow{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.flow span{font-size:12px;background:var(--g100);padding:7px 9px;border-radius:7px;font-weight:700}.flow i{font-style:normal;color:var(--g400)}
+.states{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.state{border:1px dashed var(--g300);background:var(--bg);padding:11px;border-radius:9px}.state b{font-size:11px;color:var(--navy800)}.state p{font-size:11px;margin:4px 0 0}
+.token{font-family:ui-monospace,monospace;background:var(--g100);padding:2px 5px;border-radius:4px;font-size:11px}
+@media(max-width:900px){.stage{grid-template-columns:1fr;padding:16px}.phone{position:relative;top:0;margin:auto;width:min(100%,420px)}.grid{grid-template-columns:1fr}.wide{grid-column:auto}.states{grid-template-columns:1fr 1fr}.docbar{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="docbar"><b>TBP PDS · Classes Wireframe v0.1</b><span>Mobile First · Recurring Class Management · Session Entry Point</span></header>
+
+<main class="stage">
+<section class="phone">
+ <div class="app">
+  <header class="header">
+   <div class="brandrow">
+    <div class="brand"><div class="mark">TBP</div><span>PDS</span></div>
+    <button class="profile">KY</button>
+   </div>
+   <div class="title-row"><h1>수업</h1><button class="add">＋ 수업</button></div>
+  </header>
+
+  <div class="content">
+   <h2 class="section-title">오늘 수업</h2>
+   <section class="today">
+    <div class="today-top">
+     <div>
+      <div class="eyebrow">NEXT CLASS</div>
+      <div class="time">10:00</div>
+      <div class="class-name">강남 토요일 A반</div>
+      <div class="today-meta">예정 선수 8명 · 120분 수업</div>
+     </div>
+     <span class="badge-live">예정</span>
+    </div>
+    <button class="today-action">수업 시작</button>
+   </section>
+
+   <div class="summary">
+    <div class="metric"><span>오늘 수업</span><b>2개</b></div>
+    <div class="metric"><span>운영 중 클래스</span><b>4개</b></div>
+   </div>
+
+   <div class="list-head"><h2 class="section-title">전체 클래스</h2><span>4개</span></div>
+
+   <div class="list">
+    <article class="class-card">
+     <div class="card-top">
+      <div><h2>강남 토요일 A반</h2><div class="schedule">매주 토요일 · 10:00–12:00</div></div>
+      <span class="status today-status">오늘</span>
+     </div>
+     <div class="card-info">
+      <div><div class="info-label">현재 선수</div><div class="info-value">8 / 10명</div></div>
+      <div><div class="info-label">다음 수업</div><div class="info-value">오늘 10:00</div></div>
+     </div>
+     <div class="card-bottom"><span class="next">최근 수업 · 9월 15일</span><span class="open">상세 보기 ›</span></div>
+    </article>
+
+    <article class="class-card">
+     <div class="card-top">
+      <div><h2>강남 토요일 B반</h2><div class="schedule">매주 토요일 · 12:30–14:30</div></div>
+      <span class="status today-status">오늘</span>
+     </div>
+     <div class="card-info">
+      <div><div class="info-label">현재 선수</div><div class="info-value">7 / 10명</div></div>
+      <div><div class="info-label">다음 수업</div><div class="info-value">오늘 12:30</div></div>
+     </div>
+     <div class="card-bottom"><span class="next">최근 수업 · 9월 15일</span><span class="open">상세 보기 ›</span></div>
+    </article>
+
+    <article class="class-card">
+     <div class="card-top">
+      <div><h2>강남 수요일 A반</h2><div class="schedule">매주 수요일 · 17:00–19:00</div></div>
+      <span class="status active">운영 중</span>
+     </div>
+     <div class="card-info">
+      <div><div class="info-label">현재 선수</div><div class="info-value">9 / 10명</div></div>
+      <div><div class="info-label">다음 수업</div><div class="info-value">9월 23일 17:00</div></div>
+     </div>
+     <div class="card-bottom"><span class="next">최근 수업 · 9월 16일</span><span class="open">상세 보기 ›</span></div>
+    </article>
+
+    <article class="class-card">
+     <div class="card-top">
+      <div><h2>엘리트 금요일반</h2><div class="schedule">매주 금요일 · 18:00–20:00</div></div>
+      <span class="status active">운영 중</span>
+     </div>
+     <div class="card-info">
+      <div><div class="info-label">현재 선수</div><div class="info-value">6 / 8명</div></div>
+      <div><div class="info-label">다음 수업</div><div class="info-value">9월 25일 18:00</div></div>
+     </div>
+     <div class="card-bottom"><span class="next">최근 수업 · 9월 18일</span><span class="open">상세 보기 ›</span></div>
+    </article>
+   </div>
+  </div>
+ </div>
+
+ <nav class="bottom">
+  <div class="nav"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"></path><path d="M5 9.5V21h14V9.5"></path></svg><span>홈</span></div>
+  <div class="nav"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4.5 21c.8-4.3 3.3-6.5 7.5-6.5s6.7 2.2 7.5 6.5"></path></svg><span>선수</span></div>
+  <div class="nav active"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 10h16"></path></svg><span>수업</span></div>
+  <div class="nav"><svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"></path><path d="M14 3v4h4M9 12h6M9 16h6"></path></svg><span>리포트</span></div>
+ </nav>
+</section>
+
+<aside class="notes">
+ <h1>Classes 설계 의도</h1>
+ <p>Classes는 단순 일정표가 아니라 <b>반복 운영되는 Class를 관리하고 실제 Class Session으로 진입하는 화면</b>이다. 오늘 실행해야 할 수업을 먼저 보여주고, 그 아래에서 현재 운영 중인 클래스의 인원과 다음 일정을 빠르게 확인하도록 구성했다.</p>
+
+ <div class="grid">
+  <section class="note"><h3>01 · Class ≠ Class Session</h3><p><b>Class</b>는 “강남 토요일 A반”처럼 반복되는 그룹이고, <b>Class Session</b>은 “9월 22일 A반 수업”처럼 실제 날짜에 열린 수업이다. 두 데이터를 분리한다.</p></section>
+  <section class="note"><h3>02 · 오늘 수업 우선</h3><p>코치가 앱을 열었을 때 가장 먼저 필요한 것은 오늘 진행할 수업이다. 가장 가까운 예정 Session을 Navy Primary Card로 강조하고 바로 <b>수업 시작</b>할 수 있게 한다.</p></section>
+
+  <section class="note wide"><h3>03 · 수업 시작 Flow</h3><div class="flow"><span>Class 선택</span><i>→</i><span>오늘 Session 확인</span><i>→</i><span>중복 Session 방지</span><i>→</i><span>Roster Snapshot</span><i>→</i><span>출석 확인</span><i>→</i><span>Class Log</span></div><p>시작 시 현재 클래스 소속 선수를 기준으로 해당 Session의 명단을 snapshot하고 출석 기록을 만든다. 이후 클래스 구성원이 바뀌어도 과거 Session의 선수 명단은 변하지 않아야 한다.</p></section>
+
+  <section class="note"><h3>04 · Class Card</h3><p>목록 카드에는 <b>클래스명 / 요일·시간 / 현재 인원 / 정원 / 다음 수업 / 최근 수업</b>만 노출한다. 출석 상세나 개별 선수 기록은 Class Detail 또는 Session에서 확인한다.</p></section>
+  <section class="note"><h3>05 · Today State</h3><p>오늘 수업이 있는 클래스에는 Blue 기반 <b>오늘</b> 상태를 붙여 일반 운영 중 클래스보다 빠르게 식별할 수 있도록 한다.</p></section>
+
+  <section class="note"><h3>06 · Session Status</h3><div class="states"><div class="state"><b>scheduled</b><p>예정</p></div><div class="state"><b>in_progress</b><p>진행 중</p></div><div class="state"><b>completed</b><p>완료</p></div><div class="state"><b>cancelled</b><p>취소</p></div></div></section>
+  <section class="note"><h3>07 · 진행 중 우선순위</h3><p>이미 <span class="token">in_progress</span> Session이 있으면 새 Session을 생성하지 않는다. Primary CTA를 <b>기록 계속하기</b>로 변경하고 기존 <span class="token">session_id</span>를 사용한다.</p></section>
+
+  <section class="note"><h3>08 · Class 변경 원칙</h3><p>요일, 시간, 정원, 현재 멤버를 수정해도 이미 종료된 Session의 사실관계는 수정하지 않는다. 과거 데이터는 Session/Attendance snapshot을 기준으로 유지한다.</p></section>
+  <section class="note"><h3>09 · Empty State</h3><p>등록된 클래스가 없으면 “아직 등록된 수업이 없습니다.”와 <b>＋ 첫 수업 만들기</b> CTA를 제공한다. 오늘 수업만 없는 경우 전체 클래스 목록은 그대로 유지한다.</p></section>
+
+  <section class="note wide"><h3>10 · 다음 화면 구조</h3><div class="flow"><span>Classes</span><i>→</i><span>Class Detail</span><i>→</i><span>오늘/다음 Session</span><i>→</i><span>출석</span><i>→</i><span>Class Log</span><i>→</i><span>Session 완료</span></div><p>Class Detail에서는 기본 정보, 현재 선수, 오늘/다음 Session, 최근 Session History, 클래스 수정을 제공한다. 실제 선수별 Observation 입력은 Class Log에서 수행한다.</p></section>
+
+  <section class="note"><h3>11 · Design System</h3><p>Primary <span class="token">#0B2A4A</span>, Active <span class="token">#1546F5</span>, Card radius <span class="token">12px</span>, CTA <span class="token">44–48px</span>를 사용해 Dashboard·Players와 동일한 시스템을 유지했다.</p></section>
+  <section class="note"><h3>12 · Global Navigation</h3><p>기존과 동일하게 <b>홈 / 선수 / 수업 / 리포트</b>를 유지하며 현재 화면인 수업만 Blue Active 상태로 표시한다.</p></section>
+ </div>
+</aside>
+</main>
+</body>
+</html>

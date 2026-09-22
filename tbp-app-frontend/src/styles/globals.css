@@ -1,0 +1,30 @@
+@import './reset.css';
+@import './tokens.css';
+
+/* Global Styles */
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-body-m);
+  line-height: var(--font-body-m-line);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+/* Focus Ring */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-blue-500);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-brand-blue-500);
+  outline-offset: 2px;
+}
+
+/* Mobile First Responsive */
+@media (max-width: 767px) {
+  body {
+    font-size: 16px;
+  }
+}

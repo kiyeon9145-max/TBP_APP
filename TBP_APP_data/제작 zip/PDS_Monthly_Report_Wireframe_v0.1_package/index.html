@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TBP PDS Monthly Report Wireframe v0.1</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="docbar"><b>TBP PDS · Monthly Report Wireframe v0.1</b><span>Evidence Based · Coach Approved · Parent Facing</span></header>
+<main class="stage">
+
+<section class="phone">
+ <div class="app">
+  <header class="appbar"><span class="back">‹</span><strong>월간 리포트 작성</strong><span class="save">저장</span></header>
+  <section class="head"><h1>김민준 · 2026년 9월</h1><p>초2 · 강남 토요일 A반</p><div class="statusrow"><span class="status draft">초안</span></div></section>
+  <div class="content">
+   <button class="ai">AI 초안 만들기</button>
+
+   <section class="card">
+    <h2>Before / After</h2>
+    <div class="media"><div><div class="photo">Before 영상</div><div class="media-caption">9월 1일</div></div><div><div class="photo">After 영상</div><div class="media-caption">9월 22일</div></div></div>
+    <div class="helper">실제 비교 가능한 Media가 있을 때만 사용합니다.</div>
+   </section>
+
+   <section class="card">
+    <h2>Skill 변화</h2>
+    <div class="label">받기</div><div class="field">Level 2 → Level 3 · 정면으로 오는 공을 잡는다.</div>
+    <div class="evidence-link"><span>근거 Observation 3개 연결됨</span><span>보기 ›</span></div>
+   </section>
+
+   <section class="card">
+    <h2>이번 달 발견</h2>
+    <div class="field">정면으로 오는 공을 끝까지 보며 포구하는 모습이 반복해서 관찰되었습니다.</div>
+    <div class="evidence-link"><span>근거 확인</span><span>3개 ›</span></div>
+   </section>
+
+   <section class="card">
+    <h2>지금 연습하고 있어요</h2>
+    <div class="field">던질 때 몸을 옆으로 세운 뒤 반대발을 내딛는 동작을 반복하고 있습니다.</div>
+    <div class="evidence-link"><span>근거 확인</span><span>2개 ›</span></div>
+   </section>
+
+   <section class="card">
+    <h2>다음 달 목표</h2>
+    <div class="goal"><b>반대발을 내디디며 정확하게 던지기</b><p>승인 후 다음 Current Goal로 연결할 수 있습니다.</p></div>
+   </section>
+
+   <section class="card">
+    <h2>가족과 5분 야구</h2>
+    <div class="field">5m 거리에서 부모님과 캐치볼하며 반대발을 내딛는 동작을 5번씩 확인해 주세요.</div>
+   </section>
+
+   <section class="card">
+    <h2>코치 한마디</h2>
+    <div class="field">민준이가 공을 끝까지 보는 습관이 좋아지고 있습니다. 다음 달에는 안정된 포구를 던지기 동작까지 연결해보겠습니다.</div>
+   </section>
+  </div>
+ </div>
+ <div class="sticky"><button class="secondary">미리보기</button><button class="primary">검토 후 승인</button></div>
+</section>
+
+<section class="phone previewphone">
+ <header class="appbar"><span class="back">‹</span><strong>리포트 미리보기</strong><span></span></header>
+ <div class="preview">
+  <article class="paper">
+   <div class="report-brand">TBP BASEBALL · PDS</div>
+   <div class="report-title">9월 성장 리포트</div>
+   <div class="report-sub">김민준 선수 · 강남 토요일 A반</div>
+   <div class="rule"></div>
+
+   <section class="report-sec"><h3>이번 달, 이렇게 달라졌어요</h3><div class="skill-change"><span class="level">받기 L2</span><span class="arr">→</span><span class="level">받기 L3</span></div><p style="margin-top:7px">정면으로 오는 공을 끝까지 보며 포구하는 모습이 반복해서 관찰되었습니다.</p></section>
+
+   <section class="report-sec"><h3>Before / After</h3><div class="media"><div><div class="photo">Before</div><div class="media-caption">9월 1일</div></div><div><div class="photo">After</div><div class="media-caption">9월 22일</div></div></div></section>
+
+   <section class="report-sec"><h3>지금 연습하고 있어요</h3><p>던질 때 몸을 옆으로 세운 뒤 반대발을 내딛는 동작을 반복하고 있습니다.</p></section>
+
+   <section class="report-sec nextbox"><small>NEXT GOAL</small><b>반대발을 내디디며 정확하게 던지기</b></section>
+
+   <section class="report-sec family"><h3>가족과 5분 야구</h3><p>5m 거리에서 부모님과 캐치볼하며 반대발을 내딛는 동작을 5번씩 확인해 주세요.</p></section>
+
+   <section class="report-sec coach"><h3>코치 한마디</h3><p>민준이가 공을 끝까지 보는 습관이 좋아지고 있습니다. 다음 달에는 안정된 포구를 던지기 동작까지 연결해보겠습니다.</p></section>
+  </article>
+ </div>
+</section>
+
+<aside class="notes">
+ <h1>Monthly Report 설계 의도</h1>
+ <p>Monthly Report는 PDS에 쌓인 데이터를 부모가 이해할 수 있는 언어로 바꾸는 <b>핵심 Output</b>이다. 부모가 약 10초 안에 “이번 달 무엇이 달라졌고, 코치가 무엇을 보고 있으며, 다음에는 무엇을 할지” 이해하는 것을 목표로 한다.</p>
+ <div class="grid">
+  <section class="note wide"><h3>01 · PDS Growth Loop</h3><div class="flow"><span>Current Goal</span><i>→</i><span>Class</span><i>→</i><span>Observation</span><i>→</i><span>Skill / Media</span><i>→</i><span>Monthly Report</span><i>→</i><span>Next Goal</span><i>↺</i></div></section>
+
+  <section class="note"><h3>02 · Report Inputs</h3><p>명세서 기준 입력은 <b>Observation, Skill History, Media, Goal, Attendance</b>다. 리포트 문장은 이 Evidence 범위 안에서 작성한다.</p></section>
+  <section class="note"><h3>03 · AI 역할</h3><p>AI는 초안을 만들 수 있지만 승인 권한은 없다. 존재하지 않는 날짜·횟수·성장·행동을 생성하지 않으며, 근거가 부족하면 문장을 만들지 않거나 확인이 필요함을 표시해야 한다.</p></section>
+
+  <section class="note"><h3>04 · Evidence Drawer</h3><p>“이번 달 발견”, “Skill 변화” 등 주요 문장에서 <b>근거 확인</b>을 누르면 어떤 Observation에서 나온 문장인지 코치가 확인할 수 있도록 한다.</p></section>
+  <section class="note"><h3>05 · Before / After</h3><p>실제 비교 가능한 Media가 존재할 때만 노출한다. 영상이나 사진이 없는데 Before/After를 임의로 생성하지 않는다.</p></section>
+
+  <section class="note"><h3>06 · Next Goal</h3><p>다음 달 대표 목표는 <b>정확히 1개</b>를 중심으로 전달한다. 승인 이후 이 목표를 다음 기간의 Current Goal로 연결할 수 있다.</p></section>
+  <section class="note"><h3>07 · Parent Language</h3><p>내부 데이터 구조나 코칭 전문 용어를 그대로 나열하지 않는다. 행동 변화 → 현재 연습 → 다음 목표 순서로 부모가 이해하기 쉬운 문장으로 번역한다.</p></section>
+
+  <section class="note"><h3>08 · Status</h3><p><span class="token">not_started</span> → <span class="token">draft</span> → <span class="token">approved</span>. Dashboard의 월간 리포트 완료율에는 <b>approved만 완료</b>로 계산한다.</p></section>
+  <section class="note"><h3>09 · Approval</h3><p>코치가 내용을 수정하고 미리보기 후 최종 승인한다. 승인된 Report는 당시 내용을 보존하는 Snapshot이며 이후 수정 시 revision 또는 재승인 절차가 필요하다.</p></section>
+
+  <section class="note wide"><h3>10 · One-page Output</h3><p>최종 부모용 결과물은 A4 1페이지를 기준으로 <b>변화 → 근거/Media → 현재 연습 → Next Goal → 가족 활동 → 코치 메시지</b>의 시선 흐름을 갖는다. PDF 또는 이미지 출력에서도 같은 정보 계층을 유지한다.</p></section>
+
+  <section class="note"><h3>11 · 편집 화면</h3><p>Editor에서는 Evidence 확인과 문장 수정이 우선이다. 디자인 편집 도구처럼 복잡하게 만들지 않고, 코치가 내용의 사실성과 표현을 검토하는 데 집중한다.</p></section>
+  <section class="note"><h3>12 · Design System</h3><p>내부 Editor는 기존 PDS의 Navy/Blue 시스템을 유지하고, 부모용 Report에서도 Navy를 신뢰의 중심색으로 사용한다. Orange는 Next Goal 등 제한적인 강조에만 사용한다.</p></section>
+ </div>
+</aside>
+</main>
+  <script src="script.js"></script>
+</body>
+</html>
