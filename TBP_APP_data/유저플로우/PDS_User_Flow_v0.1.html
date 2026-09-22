@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDS User Flow v0.1</title>
+<style>
+:root{--bg:#f6f8fb;--paper:#fff;--ink:#182230;--muted:#667085;--line:#e4e7ec;--navy:#173b57;--blue:#2f6f9f;--pale:#edf5fa;--green:#17795b;}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;line-height:1.65}
+.wrap{max-width:1080px;margin:auto;padding:48px 24px 80px}
+.hero{background:linear-gradient(135deg,#173b57,#2f6f9f);color:#fff;border-radius:24px;padding:44px;margin-bottom:24px;box-shadow:0 12px 30px rgba(23,59,87,.14)}
+.hero .eyebrow{font-size:13px;font-weight:800;letter-spacing:.12em;opacity:.8} h1{font-size:38px;line-height:1.2;margin:8px 0 12px} .hero p{max-width:760px;margin:0;opacity:.9}
+.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px} .pill{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 12px;font-size:13px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:28px;margin:18px 0}
+h2{font-size:24px;margin:0 0 14px;color:var(--navy)} h3{margin:0;font-size:19px} p{margin:5px 0}
+.main-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:18px}
+.main-flow span{background:var(--pale);border:1px solid #d6e7f2;border-radius:10px;padding:9px 12px;font-weight:700;font-size:14px} .main-flow i{font-style:normal;color:var(--blue);font-weight:900}
+.note{background:#f8fafc;border-left:4px solid var(--blue);padding:14px 16px;border-radius:8px;margin-top:18px}
+.flow-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;margin:14px 0}
+.flow-head{display:flex;gap:15px;align-items:flex-start} .num{display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;background:var(--navy);color:#fff;border-radius:10px;font-weight:800;flex:none}
+.flow-head p{color:var(--muted);font-size:14px}
+.steps{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:20px 0}
+.step{padding:8px 11px;background:#f8fafc;border:1px solid var(--line);border-radius:9px;font-size:13px;font-weight:650} .arrow{color:#98a2b3;font-weight:900}
+.result{background:#f0faf6;color:#245f4e;border-radius:10px;padding:12px 14px;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14px} th,td{padding:12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} th{background:#f8fafc;color:#344054}
+.loop{text-align:center;padding:25px;background:#f8fafc;border-radius:14px;font-weight:800;font-size:18px;color:var(--navy)} .loop small{display:block;color:var(--muted);font-weight:500;font-size:14px;margin-top:8px}
+.footer{color:var(--muted);font-size:13px;text-align:center;margin-top:32px}
+@media(max-width:650px){.wrap{padding:20px 14px 50px}.hero{padding:28px 22px;border-radius:18px}h1{font-size:29px}.panel,.flow-card{padding:19px}table{font-size:12px}}
+@media print{body{background:#fff}.wrap{max-width:none;padding:0}.hero{box-shadow:none}.flow-card{break-inside:avoid}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero">
+<div class="eyebrow">PLAYER DEVELOPMENT SYSTEM</div>
+<h1>PDS User Flow v0.1</h1>
+<p>유소년 야구 코치가 선수 등록부터 수업 기록, Skill Ladder, 영상 관리, 월간 리포트, 다음 목표 설정까지 실제 현장에서 사용하는 흐름을 정의한 문서입니다.</p>
+<div class="meta"><span class="pill">문서 유형 · User Flow</span><span class="pill">대상 · Coach MVP</span><span class="pill">버전 · 0.1</span></div>
+</header>
+
+<section class="panel">
+<h2>1. 문서 목적</h2>
+<p>요구사항 명세서에서 정의한 기능이 실제 코치의 업무 과정에서 어떤 순서로 사용되는지 명확히 한다. 이후 화면 명세서, Wireframe, DB ERD 설계의 기준 문서로 사용한다.</p>
+<div class="note"><b>핵심 UX 원칙</b> · 모바일 우선 / 선수 1명 기록 30초 이내 / 중복 입력 최소화 / 행동 기반 기록 / AI 결과는 코치 승인 후 저장·발행</div>
+</section>
+
+<section class="panel">
+<h2>2. Main User Journey</h2>
+<div class="main-flow">
+<span>선수 등록</span><i>→</i><span>클래스 배정</span><i>→</i><span>수업</span><i>→</i><span>관찰 기록</span><i>→</i><span>Skill·미디어</span><i>→</i><span>데이터 누적</span><i>→</i><span>월간 리포트</span><i>→</i><span>다음 목표</span><i>↺</i>
+</div>
+<p style="color:var(--muted);margin-top:16px">리포트 발행이 종료점이 아니다. 리포트의 다음 목표가 다음 달 수업의 현재 목표로 다시 연결되어야 한다.</p>
+</section>
+
+<section class="panel"><h2>3. 상세 User Flow</h2><p style="color:var(--muted)">MVP에서 코치가 수행하는 13개의 핵심 업무 흐름이다.</p></section>
+
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">01</span><div><h3>최초 선수 등록</h3><p>새로운 선수를 시스템에 등록하고 클래스·초기 Skill·현재 목표를 설정한다.</p></div></div>
+      <div class="steps"><span class="step">Dashboard</span><span class="arrow">→</span><span class="step">선수 등록</span><span class="arrow">→</span><span class="step">기본정보 입력</span><span class="arrow">→</span><span class="step">클래스 선택</span><span class="arrow">→</span><span class="step">초기 Skill 설정</span><span class="arrow">→</span><span class="step">현재 목표 설정</span><span class="arrow">→</span><span class="step">저장</span><span class="arrow">→</span><span class="step">Player Detail 생성</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>Player + Class Membership + Initial Skill + Goal 생성. 초기 평가가 어려우면 &#x27;미평가&#x27; 허용.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">02</span><div><h3>수업 전</h3><p>오늘 수업과 참여 선수를 확인하고 수업 세션을 시작한다.</p></div></div>
+      <div class="steps"><span class="step">로그인</span><span class="arrow">→</span><span class="step">Dashboard</span><span class="arrow">→</span><span class="step">오늘 수업 선택</span><span class="arrow">→</span><span class="step">참여 예정 선수 확인</span><span class="arrow">→</span><span class="step">출석/결석 확인</span><span class="arrow">→</span><span class="step">수업 시작</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>Class Session 생성. 날짜·클래스·출결·진행 상태를 저장.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">03</span><div><h3>수업 중 빠른 기록</h3><p>현장에서 선수별 관찰을 30초 이내로 기록한다.</p></div></div>
+      <div class="steps"><span class="step">수업 진행 화면</span><span class="arrow">→</span><span class="step">선수 선택</span><span class="arrow">→</span><span class="step">기술 선택</span><span class="arrow">→</span><span class="step">Skill 확인</span><span class="arrow">→</span><span class="step">시도/성공 입력</span><span class="arrow">→</span><span class="step">관찰 메모</span><span class="arrow">→</span><span class="step">사진·영상 추가(선택)</span><span class="arrow">→</span><span class="step">저장 &amp; 다음 선수</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>한 선수의 기록 완료 후 다음 선수로 빠르게 이동.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">04</span><div><h3>한 선수의 복수 관찰</h3><p>한 수업에서 같은 선수에게 여러 기술 관찰 기록을 남긴다.</p></div></div>
+      <div class="steps"><span class="step">선수 선택</span><span class="arrow">→</span><span class="step">받기 기록</span><span class="arrow">→</span><span class="step">던지기 기록</span><span class="arrow">→</span><span class="step">치기 기록</span><span class="arrow">→</span><span class="step">필요 시 추가 Observation</span><span class="arrow">→</span><span class="step">저장</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>한 선수+한 수업에 여러 Observation을 허용.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">05</span><div><h3>사진·영상 기록</h3><p>미디어를 선수·날짜·수업·기술과 연결해 저장한다.</p></div></div>
+      <div class="steps"><span class="step">Class Log 또는 Player Detail</span><span class="arrow">→</span><span class="step">촬영/파일 선택</span><span class="arrow">→</span><span class="step">선수 연결</span><span class="arrow">→</span><span class="step">날짜/수업 연결</span><span class="arrow">→</span><span class="step">기술 선택</span><span class="arrow">→</span><span class="step">태그/메모</span><span class="arrow">→</span><span class="step">저장</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>모든 Media는 최소 Player / Date / Skill을 가져야 함.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">06</span><div><h3>Skill Ladder 업데이트</h3><p>관찰 근거를 보고 코치가 Skill 단계를 직접 변경한다.</p></div></div>
+      <div class="steps"><span class="step">Player Detail</span><span class="arrow">→</span><span class="step">Skill 선택</span><span class="arrow">→</span><span class="step">현재 단계 확인</span><span class="arrow">→</span><span class="step">최근 관찰 근거 확인</span><span class="arrow">→</span><span class="step">다음 단계 기준 확인</span><span class="arrow">→</span><span class="step">변경 승인</span><span class="arrow">→</span><span class="step">History 저장</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>자동 승급 금지. 과거 Skill을 덮어쓰지 않고 변경 이력 보존.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">07</span><div><h3>수업 종료</h3><p>누락 기록을 확인하고 수업을 종료한다.</p></div></div>
+      <div class="steps"><span class="step">수업 종료 선택</span><span class="arrow">→</span><span class="step">출석/기록 현황 확인</span><span class="arrow">→</span><span class="step">미작성 선수 확인</span><span class="arrow">→</span><span class="step">계속 기록 또는 일단 종료</span><span class="arrow">→</span><span class="step">Dashboard</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>미작성 상태로 종료 가능. Dashboard에 미작성 업무 표시.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">08</span><div><h3>수업 후 기록 보완</h3><p>수업 중 못 남긴 기록을 나중에 보완한다.</p></div></div>
+      <div class="steps"><span class="step">Dashboard</span><span class="arrow">→</span><span class="step">미작성 기록 선택</span><span class="arrow">→</span><span class="step">선수 선택</span><span class="arrow">→</span><span class="step">기록 작성 또는 음성메모 정리</span><span class="arrow">→</span><span class="step">AI 초안 확인(향후)</span><span class="arrow">→</span><span class="step">코치 확인</span><span class="arrow">→</span><span class="step">저장</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>AI가 직접 저장하지 않고 코치 승인 후 저장.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">09</span><div><h3>Player Detail 확인</h3><p>한 선수의 현재 상태와 성장 히스토리를 통합 조회한다.</p></div></div>
+      <div class="steps"><span class="step">Players</span><span class="arrow">→</span><span class="step">선수 선택</span><span class="arrow">→</span><span class="step">Overview</span><span class="arrow">→</span><span class="step">수업기록 / Skill / 영상 / Report 탭</span><span class="arrow">→</span><span class="step">현재 목표·최근 변화 확인</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>선수 성장 프로필 역할.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">10</span><div><h3>월말 리포트 생성</h3><p>한 달간 누적된 데이터를 리포트 작성 화면으로 불러온다.</p></div></div>
+      <div class="steps"><span class="step">Dashboard</span><span class="arrow">→</span><span class="step">Monthly Report</span><span class="arrow">→</span><span class="step">대상 월 선택</span><span class="arrow">→</span><span class="step">선수 선택</span><span class="arrow">→</span><span class="step">월간 데이터 불러오기</span><span class="arrow">→</span><span class="step">리포트 작성 시작</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>수업 기록 + Skill 변화 + 성공/시도 + 미디어 + 이전 목표를 집계.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">11</span><div><h3>AI 리포트 초안</h3><p>누적 기록만 근거로 부모용 리포트 초안을 생성한다.</p></div></div>
+      <div class="steps"><span class="step">월간 데이터 확인</span><span class="arrow">→</span><span class="step">AI 초안 생성</span><span class="arrow">→</span><span class="step">이번 달 발견</span><span class="arrow">→</span><span class="step">현재 연습</span><span class="arrow">→</span><span class="step">다음 목표</span><span class="arrow">→</span><span class="step">가족과 5분 야구</span><span class="arrow">→</span><span class="step">근거 기록 확인</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>기록에 없는 내용 생성 금지. 근거 부족 시 &#x27;코치 확인 필요&#x27;.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">12</span><div><h3>리포트 편집 및 확정</h3><p>AI 초안을 코치가 검토·수정하고 최종 리포트를 확정한다.</p></div></div>
+      <div class="steps"><span class="step">AI 초안</span><span class="arrow">→</span><span class="step">코치 수정</span><span class="arrow">→</span><span class="step">Before/After 선택</span><span class="arrow">→</span><span class="step">코치 한마디</span><span class="arrow">→</span><span class="step">미리보기</span><span class="arrow">→</span><span class="step">리포트 확정</span><span class="arrow">→</span><span class="step">PDF/이미지 출력</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>상태: Draft → Approved. AI가 자동 발행하지 않음.</div>
+    </section>
+    <section class="flow-card">
+      <div class="flow-head"><span class="num">13</span><div><h3>다음 달 목표 연결</h3><p>리포트의 다음 목표를 다음 수업의 현재 목표로 연결한다.</p></div></div>
+      <div class="steps"><span class="step">확정 리포트</span><span class="arrow">→</span><span class="step">다음 목표 확인</span><span class="arrow">→</span><span class="step">다음 달 목표로 등록</span><span class="arrow">→</span><span class="step">Player Detail 반영</span><span class="arrow">→</span><span class="step">다음 수업에서 목표 노출</span></div>
+      <div class="result"><b>완료 조건 / 결과</b><br>기록 → 리포트 → 목표 → 다음 수업의 성장 루프 완성.</div>
+    </section>
+
+<section class="panel">
+<h2>4. 예외 처리 Flow</h2>
+<table>
+<thead><tr><th>상황</th><th>처리 원칙</th></tr></thead>
+<tbody>
+<tr><td>선수 결석</td><td>결석 처리하고 관찰 기록 작성을 요구하지 않는다.</td></tr>
+<tr><td>수업 중 기록하지 못함</td><td>미작성 상태를 유지하고 Dashboard에서 후속 업무로 표시한다.</td></tr>
+<tr><td>관찰하지 않은 기술</td><td>임의 값을 입력하지 않고 비워둔다.</td></tr>
+<tr><td>Skill 변화 없음</td><td>기존 단계를 유지한다.</td></tr>
+<tr><td>같은 기술을 여러 번 관찰</td><td>복수 Observation을 허용한다.</td></tr>
+<tr><td>영상이 없음</td><td>영상 없이도 기록 및 리포트 생성을 허용한다.</td></tr>
+<tr><td>AI 근거 부족</td><td>'코치 확인 필요'로 표시한다.</td></tr>
+<tr><td>AI 초안 오류</td><td>코치가 수정할 수 있으며 자동 발행하지 않는다.</td></tr>
+<tr><td>리포트 작성 중 종료</td><td>Draft 상태로 저장한다.</td></tr>
+<tr><td>선수 클래스 변경</td><td>기존 클래스의 과거 기록은 유지한다.</td></tr>
+<tr><td>선수 퇴원</td><td>데이터 삭제보다 비활성화를 기본 정책으로 한다.</td></tr>
+</tbody></table>
+</section>
+
+<section class="panel">
+<h2>5. 핵심 데이터 관계</h2>
+<div class="loop">Goal → Class → Observation → Skill / Media → Monthly Report → Next Goal ↺
+<small>PDS의 핵심은 회원 관리가 아니라 선수의 목표와 실제 수업 데이터를 계속 연결하는 성장 관리 루프다.</small></div>
+</section>
+
+<section class="panel">
+<h2>6. 다음 설계 산출물</h2>
+<p><b>화면 명세서 + Low-Fidelity Wireframe</b>을 작성한다. Dashboard, Players, Player Detail, Classes, Class Log, Skill Ladder, Monthly Report 각 화면의 정보 구조, 입력 요소, 버튼, 이동 경로, 모바일 상태를 확정한 뒤 DB ERD 설계로 진행한다.</p>
+</section>
+
+<div class="footer">PDS · Player Development System · User Flow v0.1</div>
+</main></body></html>

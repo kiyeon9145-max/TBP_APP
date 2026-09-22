@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDS ERD / DB Schema v1.1</title>
+<style>
+:root{--navy:#153b56;--blue:#2e6f9e;--pale:#edf5fa;--ink:#17212b;--muted:#667085;--line:#e4e7ec;--bg:#f5f7fa;--green:#16785b;--orange:#a96200;--red:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;line-height:1.65}.wrap{max-width:1180px;margin:auto;padding:42px 22px 80px}.hero{background:linear-gradient(135deg,#153b56,#3279aa);color:white;padding:42px;border-radius:24px}.hero h1{font-size:36px;margin:7px 0}.hero p{max-width:900px;opacity:.9}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;opacity:.8}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.chip{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 11px;font-size:12px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;margin-top:18px}.card h2{margin:0 0 14px;color:var(--navy);font-size:23px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.callout{background:var(--pale);border-left:4px solid var(--blue);border-radius:8px;padding:14px 16px;margin:14px 0}.warn{background:#fff7eb;border-left-color:var(--orange)}.removed{background:#fff1f0;border-left-color:var(--red)}.muted{color:var(--muted)}pre{background:#111b23;color:#dce8ef;padding:18px;border-radius:12px;overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;line-height:1.55}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#f8fafc}.flow{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.flow span{background:#f8fafc;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:12px;font-weight:750}.arrow{color:#98a2b3}.layer{padding:22px;border-radius:14px;border:1px solid var(--line);margin:10px 0}.front{background:#f3f8fb}.back{background:#f8fafc}.db{background:#f4faf7}.label{font-size:11px;font-weight:900;letter-spacing:.1em;color:var(--muted)}.entity{border:1px solid var(--line);border-radius:12px;padding:12px;margin:8px 0}.entity b{color:var(--navy)}.badge{display:inline-block;padding:3px 7px;border-radius:999px;background:#eaf7f2;color:var(--green);font-size:11px;font-weight:800}ul{padding-left:21px}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:30px}@media(max-width:800px){.grid{grid-template-columns:1fr}.wrap{padding:20px 14px 50px}.hero{padding:28px 22px}.hero h1{font-size:28px}.card{padding:20px}}
+</style></head>
+<body><main class="wrap">
+<header class="hero"><div class="eyebrow">PDS · DATA ARCHITECTURE · v1.1</div><h1>전체 ERD / DB Schema</h1><p>Hi5와 동일한 분리형 개발 구조를 기준으로 수정한 PDS 데이터 아키텍처. Next.js는 UI, Backend는 비즈니스 로직과 Transaction, PostgreSQL은 원본 데이터와 성장 History를 담당한다.</p><div class="chips"><span class="chip">Next.js / React</span><span class="chip">Backend API</span><span class="chip">PostgreSQL</span><span class="chip">15 Tables</span><span class="chip">History First</span></div></header>
+
+<section class="card"><h2>1. 아키텍처 확정</h2>
+<div class="layer front"><div class="label">FRONTEND</div><h3>Next.js / React</h3><p>화면 · Form · 모바일 UX · API 요청 · Report Preview</p></div>
+<div style="text-align:center">↓ HTTP / API</div>
+<div class="layer back"><div class="label">BACKEND</div><h3>API / Service / Business Logic</h3><p>Authentication · Authorization · Validation · Transaction · AI · Media · PDF Export</p></div>
+<div style="text-align:center">↓ SQL / ORM</div>
+<div class="layer db"><div class="label">DATABASE</div><h3>PostgreSQL</h3><p>Player · Goal · Class · Session · Observation · Skill History · Media Metadata · Monthly Report</p></div>
+<div class="callout"><b>Frontend → DB 직접 접근은 하지 않는다.</b><br>모든 데이터 변경은 Backend Use Case를 통과한다.</div>
+</section>
+
+<section class="card"><h2>2. v1.0에서 제거한 Supabase 종속 요소</h2><div class="callout removed"><b>제거</b><br>auth.users · Supabase Auth 1:1 · RLS · Supabase Storage 전제 · auth.uid() 기반 ownership</div><p>v1.1의 DB는 순수 PostgreSQL Schema다. 인증과 파일 저장 Provider는 Backend Infrastructure에서 선택한다.</p></section>
+
+<section class="card"><h2>3. 최종 ERD</h2><pre>
+coaches
+   │
+   ├── 1:N players
+   │       ├── player_goals
+   │       ├── class_enrollments ─────────► classes
+   │       ├── session_attendance ────────► class_sessions
+   │       ├── observations ──────────────► class_sessions
+   │       │      └── media
+   │       ├── player_skill_current
+   │       ├── skill_progress_history
+   │       │      └── skill_progress_evidence ──► observations
+   │       └── monthly_reports
+   │              ├── monthly_report_skill_snapshots
+   │              ├── monthly_report_evidence ──► observations
+   │              ├── before_media_id / after_media_id ──► media
+   │              └── next_goal_id ──► player_goals
+   │
+   └── 1:N classes
+           ├── class_enrollments
+           └── class_sessions
+                  ├── session_attendance
+                  └── observations
+</pre></section>
+
+<section class="card"><h2>4. 15개 물리 테이블</h2><div class="grid">
+<div><div class="entity"><b>Account</b><br>coaches</div><div class="entity"><b>Player</b><br>players · player_goals</div><div class="entity"><b>Class</b><br>classes · class_enrollments · class_sessions · session_attendance</div></div>
+<div><div class="entity"><b>Observation / Media</b><br>observations · media</div><div class="entity"><b>Skill</b><br>player_skill_current · skill_progress_history · skill_progress_evidence</div><div class="entity"><b>Report</b><br>monthly_reports · monthly_report_skill_snapshots · monthly_report_evidence</div></div>
+</div></section>
+
+<section class="card"><h2>5. PDS Core Data Loop</h2><div class="flow"><span>Player</span><i class="arrow">→</i><span>Goal</span><i class="arrow">→</i><span>Class</span><i class="arrow">→</i><span>Session</span><i class="arrow">→</i><span>Observation</span><i class="arrow">→</i><span>Skill / Media</span><i class="arrow">→</i><span>Monthly Report</span><i class="arrow">→</i><span>Next Goal</span><i class="arrow">↺</i></div></section>
+
+<div class="grid"><section class="card"><h2>6. Observation</h2><p><b>관찰 사실의 원본.</b></p><pre>session_id
+player_id
+skill_area
+observation_text
+attempts?
+successes?
+coach_note?
+observed_at
+source</pre><div class="callout">Class Log 저장은 Skill Level을 자동 변경하지 않는다.</div></section>
+<section class="card"><h2>7. Skill</h2><p><b>현재값과 History 분리.</b></p><pre>player_skill_current
+
+skill_progress_history
+  └─ skill_progress_evidence</pre><p>미평가 ≠ L1. NULL→3, 3→2, 2→4 모두 허용.</p></section></div>
+
+<section class="card"><h2>8. Media 변경</h2><p>특정 Storage 서비스에 ERD를 종속시키지 않는다.</p><table><thead><tr><th>v1.0</th><th>v1.1</th></tr></thead><tbody><tr><td>storage_bucket</td><td rowspan="2"><b>storage_provider</b><br><b>storage_key</b><br>mime_type / file_size</td></tr><tr><td>storage_path</td></tr></tbody></table><div class="callout">Backend가 S3 / R2 / Vercel Blob 등 실제 Provider와 접근 URL을 처리한다.</div></section>
+
+<section class="card"><h2>9. Backend Transaction</h2><div class="grid"><div><h3>Skill 변경</h3><pre>BEGIN
+Current Skill SELECT
+History INSERT
+Evidence INSERT
+Current UPSERT
+COMMIT</pre></div><div><h3>Report 승인</h3><pre>BEGIN
+Draft Validation
+Skill Snapshot
+Evidence
+Approved Snapshot
+Report Approve
+Previous Goal End
+Next Goal INSERT
+COMMIT</pre></div></div><p class="muted">복합 상태 변경을 Frontend의 여러 요청으로 나누지 않는다.</p></section>
+
+<section class="card"><h2>10. Backend 권한 구조</h2><div class="flow"><span>Request</span><i class="arrow">→</i><span>Auth 검증</span><i class="arrow">→</i><span>Coach 확인</span><i class="arrow">→</i><span>Resource Ownership</span><i class="arrow">→</i><span>Service</span><i class="arrow">→</i><span>PostgreSQL</span></div><div class="callout warn"><b>클라이언트가 보내는 coach_id를 신뢰하지 않는다.</b><br>인증된 사용자 기준으로 Backend에서 리소스 소유권을 검증한다.</div></section>
+
+<section class="card"><h2>11. 화면 ↔ Backend ↔ DB</h2><table><thead><tr><th>화면</th><th>Backend</th><th>DB</th></tr></thead><tbody>
+<tr><td>Dashboard</td><td>오늘 수업/미작성/리포트 집계</td><td>sessions · attendance · observations · reports</td></tr>
+<tr><td>Players</td><td>검색/필터/등록</td><td>players · enrollments · goals</td></tr>
+<tr><td>Player Detail</td><td>성장 이력 조회</td><td>goals · observations · skills · media · reports</td></tr>
+<tr><td>Classes</td><td>클래스/등록/Session 관리</td><td>classes · enrollments · sessions</td></tr>
+<tr><td>Class Log</td><td>Observation 저장</td><td>attendance · observations · media</td></tr>
+<tr><td>Skill Ladder</td><td>Skill Change Transaction</td><td>current · history · evidence</td></tr>
+<tr><td>Monthly Report</td><td>Draft / Approve / Export</td><td>reports · snapshots · evidence · goals</td></tr>
+</tbody></table></section>
+
+<section class="card"><h2>12. Frontend에서 하지 않을 것</h2><div class="grid"><ul><li>PostgreSQL 직접 Query</li><li>Skill History 직접 INSERT</li><li>Goal 교체 직접 처리</li></ul><ul><li>Report 승인 DB 변경</li><li>AI Secret Key 사용</li><li>Storage Secret 사용</li></ul></div></section>
+
+<section class="card"><h2>13. DB 핵심 무결성</h2><table><thead><tr><th>Rule</th><th>방법</th></tr></thead><tbody>
+<tr><td>Player당 Active Goal 1개</td><td><span class="badge">Partial Unique</span></td></tr>
+<tr><td>Active Enrollment 중복 금지</td><td><span class="badge">Partial Unique</span></td></tr>
+<tr><td>Session/Player Attendance 1개</td><td><span class="badge">Unique</span></td></tr>
+<tr><td>successes ≤ attempts</td><td><span class="badge">CHECK</span></td></tr>
+<tr><td>Player+Skill Current 1개</td><td><span class="badge">Composite PK</span></td></tr>
+<tr><td>Player+Month Report 1개</td><td><span class="badge">Unique</span></td></tr>
+<tr><td>Approved Report 재현</td><td><span class="badge">JSON Snapshot</span></td></tr>
+</tbody></table></section>
+
+<section class="card"><h2>14. API Resource 기준</h2><pre>
+/api/players
+/api/players/:playerId
+/api/players/:playerId/goals
+/api/players/:playerId/skills
+/api/players/:playerId/media
+/api/players/:playerId/reports
+
+/api/classes
+/api/classes/:classId/enrollments
+
+/api/sessions
+/api/sessions/:sessionId/attendance
+/api/sessions/:sessionId/observations
+
+/api/reports
+/api/reports/:reportId/generate-draft
+/api/reports/:reportId/approve
+/api/reports/:reportId/export
+</pre><p class="muted">URL 최종 명세가 아니라 Backend Resource 설계를 위한 기준이다.</p></section>
+
+<section class="card"><h2>15. 개발 순서</h2><div class="flow"><span>PostgreSQL Migration</span><i class="arrow">→</i><span>Backend DB/ORM</span><i class="arrow">→</i><span>Auth</span><i class="arrow">→</i><span>Core API</span><i class="arrow">→</i><span>Transactions</span><i class="arrow">→</i><span>Next.js 연결</span><i class="arrow">→</i><span>AI / Export</span></div></section>
+
+<section class="card"><h2>16. v1.1 최종 확정</h2><div class="callout"><b>Next.js → Backend API → PostgreSQL</b></div><p>앞으로 SQL Migration, API 명세, 폴더 구조, 구현 명세는 모두 이 구조를 기준으로 한다. DB는 특정 BaaS에 종속시키지 않고, 비즈니스 규칙과 Transaction은 Backend가 책임진다.</p></section>
+<div class="footer">PDS · ERD / DB Schema v1.1 · Next.js + Backend API + PostgreSQL</div>
+</main></body></html>

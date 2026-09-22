@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TBP PDS · Hi-Fi Prototype</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar">
+ <div class="brand"><img src="img/image_01.svg"><div class="wordmark"><strong>TBP</strong><small>BASEBALL</small></div></div>
+ <div class="nav-title">PLAYER DEVELOPMENT</div>
+ <nav class="side-nav" id="sideNav"></nav>
+ <div class="coach"><div class="coach-avatar">KY</div><div><b>기연 코치</b><span>TBP Baseball Coach</span></div></div>
+</aside>
+<main class="main">
+ <header class="topbar"><div class="mobile-brand"><img src="img/image_02.svg"><div class="wordmark"><strong>TBP</strong><small>BASEBALL</small></div></div><div class="crumb" id="crumb">Dashboard</div><div class="top-actions"><button class="icon-btn" onclick="toast('새 알림이 없습니다.')">◌</button><button class="icon-btn" onclick="toast('프로필 메뉴')">KY</button></div></header>
+ <div class="viewport" id="view"></div>
+ <div id="actions"></div>
+</main>
+</div>
+<nav class="mobile-nav" id="mobileNav"></nav>
+<div class="modal-backdrop" id="modal"><div class="modal" id="modalBox"></div></div>
+<div class="toast" id="toast"></div>
+
+  <script src="js/app.js"></script>
+</body></html>

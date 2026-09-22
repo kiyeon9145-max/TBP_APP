@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TBP PDS Player Detail Wireframe v0.1</title>
+<style>
+:root{
+ --navy900:#071E3A;--navy800:#0B2A4A;--navy700:#123B63;
+ --blue600:#1546F5;--blue500:#2D5BFF;--blue100:#E8EEFF;
+ --orange:#FF7A1A;--orange100:#FFF0E5;
+ --white:#fff;--bg:#F8FAFC;--text:#111827;--sub:#4B5563;--muted:#6B7280;
+ --g400:#9CA3AF;--g300:#D1D5DB;--g200:#E5E7EB;--g100:#F3F4F6;
+ --success:#16805D;--successbg:#EAF7F2;--warning:#B96800;--warningbg:#FFF4E5
+}
+*{box-sizing:border-box}
+body{margin:0;background:#e9edf2;color:var(--text);font-family:Pretendard,"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit}
+.docbar{background:var(--navy900);color:#fff;padding:14px 22px;display:flex;justify-content:space-between;gap:16px}
+.docbar b{font-size:15px}.docbar span{font-size:12px;opacity:.75}
+.stage{max-width:1380px;margin:auto;padding:28px;display:grid;grid-template-columns:minmax(360px,420px) 1fr;gap:28px;align-items:start}
+.phone{background:var(--bg);border:1px solid #cfd6df;border-radius:28px;overflow:hidden;box-shadow:0 12px 28px rgba(15,23,42,.12);min-height:900px;position:sticky;top:24px}
+.app{padding-bottom:78px}
+.appbar{height:58px;background:#fff;border-bottom:1px solid var(--g200);display:grid;grid-template-columns:48px 1fr 48px;align-items:center;padding:0 8px}
+.iconbtn{height:44px;width:44px;border:0;background:transparent;color:var(--navy900);font-size:25px}
+.appbar strong{text-align:center;font-size:16px;color:var(--navy900)}
+.profile{background:#fff;padding:18px 16px 16px}
+.identity{display:flex;gap:12px;align-items:center}
+.avatar{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--blue100);color:var(--blue600);font-weight:800;font-size:17px}
+.identity h1{font-size:21px;margin:0 0 4px;color:var(--navy900)}
+.identity p{margin:2px 0;color:var(--muted);font-size:13px}
+.status{display:inline-flex;align-items:center;gap:5px;color:var(--success);font-size:12px;font-weight:700}
+.status:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--success)}
+.goal{margin:0 16px 16px;background:var(--navy800);color:#fff;border-radius:12px;padding:16px}
+.goal-head{display:flex;justify-content:space-between;align-items:center}
+.goal-label{font-size:12px;font-weight:700;opacity:.8}
+.goal button{border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:7px;height:32px;padding:0 10px;font-size:12px;font-weight:700}
+.goal-title{font-size:17px;font-weight:800;margin-top:10px;line-height:1.45}
+.goal-date{font-size:12px;opacity:.7;margin-top:8px}
+.tabs{background:#fff;border-top:1px solid var(--g200);border-bottom:1px solid var(--g200);display:flex;overflow-x:auto;padding:0 8px;scrollbar-width:none}
+.tab{height:48px;padding:0 11px;display:flex;align-items:center;white-space:nowrap;font-size:12px;color:var(--muted);font-weight:700;border-bottom:2px solid transparent}
+.tab.active{color:var(--blue600);border-color:var(--blue600)}
+.content{padding:16px;display:flex;flex-direction:column;gap:14px}
+.card{background:#fff;border:1px solid var(--g200);border-radius:12px;padding:16px}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px}
+.card-head h2{font-size:15px;margin:0;color:var(--navy900)}
+.more{font-size:12px;color:var(--blue600);font-weight:700}
+.skill-list{display:flex;flex-direction:column}
+.skill{min-height:51px;display:grid;grid-template-columns:55px 1fr 62px 16px;align-items:center;border-top:1px solid var(--g100);gap:6px}
+.skill:first-child{border-top:0}
+.skill-name{font-size:13px;font-weight:700}
+.dots{display:flex;gap:4px}.dot{width:10px;height:10px;border-radius:50%;background:var(--g200)}.dot.on{background:var(--blue600)}
+.level{font-size:12px;color:var(--navy800);font-weight:800;text-align:right}.chev{color:var(--g400)}
+.change{display:flex;align-items:center;gap:10px}
+.change-icon{width:34px;height:34px;border-radius:8px;background:var(--blue100);color:var(--blue600);display:grid;place-items:center;font-weight:900}
+.change b{font-size:13px}.change p{font-size:12px;color:var(--muted);margin:3px 0 0}
+.obs{padding:12px 0;border-top:1px solid var(--g100)}.obs:first-of-type{border-top:0;padding-top:0}
+.obs-meta{font-size:11px;color:var(--muted);margin-bottom:7px}
+.skillbadge{display:inline-block;background:var(--blue100);color:var(--blue600);border-radius:6px;padding:3px 7px;font-size:11px;font-weight:800;margin-right:5px}
+.obs-text{font-size:13px;line-height:1.55;font-weight:600}
+.count{font-size:11px;color:var(--muted);margin-top:5px}
+.media{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.thumb{aspect-ratio:1/1;border-radius:8px;background:linear-gradient(145deg,#dce3ea,#f4f6f8);position:relative;overflow:hidden;border:1px solid var(--g200)}
+.thumb:after{content:"▶";position:absolute;left:8px;bottom:7px;width:25px;height:25px;border-radius:50%;background:rgba(7,30,58,.78);color:#fff;display:grid;place-items:center;font-size:9px}
+.thumb span{position:absolute;right:6px;top:6px;background:rgba(255,255,255,.9);padding:3px 5px;border-radius:5px;font-size:9px;color:var(--sub)}
+.report{display:flex;gap:12px;align-items:center}
+.report-icon{width:42px;height:50px;border-radius:8px;background:var(--successbg);color:var(--success);display:grid;place-items:center;font-size:20px}
+.report-main{flex:1}.report-main b{font-size:13px}.report-main p{font-size:11px;color:var(--muted);margin:5px 0 0;line-height:1.45}
+.approved{font-size:10px;background:var(--successbg);color:var(--success);padding:4px 6px;border-radius:5px;font-weight:800}
+.sticky{position:absolute;bottom:0;left:0;right:0;padding:10px 16px;background:rgba(255,255,255,.96);border-top:1px solid var(--g200)}
+.primary{width:100%;height:48px;border:0;border-radius:8px;background:var(--navy800);color:#fff;font-weight:800}
+.notes{background:#fff;border:1px solid #d9e0e8;border-radius:16px;padding:24px}
+.notes h1{font-size:26px;margin:0 0 8px;color:var(--navy900)}
+.notes>p{margin:0 0 24px;color:var(--sub);line-height:1.65}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.note{border:1px solid var(--g200);border-radius:12px;padding:16px}.note.wide{grid-column:1/-1}
+.note h3{font-size:14px;color:var(--navy800);margin:0 0 8px}.note p,.note li{font-size:13px;line-height:1.65;color:var(--sub)}
+.note ul{padding-left:18px;margin:0}
+.flow{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.flow span{font-size:12px;background:var(--g100);padding:7px 9px;border-radius:7px;font-weight:700}.flow i{font-style:normal;color:var(--g400)}
+.states{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.state{background:var(--bg);border:1px dashed var(--g300);border-radius:9px;padding:12px}.state b{font-size:12px;color:var(--navy800)}.state p{font-size:12px;margin:5px 0 0}
+.token{font-family:ui-monospace,monospace;background:var(--g100);font-size:11px;padding:2px 5px;border-radius:4px}
+@media(max-width:900px){.stage{grid-template-columns:1fr;padding:16px}.phone{position:relative;top:0;margin:auto;width:min(100%,420px)}.grid{grid-template-columns:1fr}.note.wide{grid-column:auto}.states{grid-template-columns:1fr}.docbar{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="docbar"><b>TBP PDS · Player Detail Wireframe v0.1</b><span>Mobile First · Single Growth Record Entry Point · Overview</span></header>
+<main class="stage">
+<section class="phone">
+ <div class="app">
+  <header class="appbar"><button class="iconbtn">‹</button><strong>선수 상세</strong><button class="iconbtn">•••</button></header>
+  <section class="profile">
+   <div class="identity">
+    <div class="avatar">김</div>
+    <div>
+     <h1>김민준 선수</h1>
+     <p>초2 · 우투우타</p>
+     <p>강남 토요일 A반 · <span class="status">활동 중</span></p>
+    </div>
+   </div>
+  </section>
+
+  <section class="goal">
+   <div class="goal-head"><span class="goal-label">현재 목표</span><button>수정</button></div>
+   <div class="goal-title">반대발을 내디디며 던지기</div>
+   <div class="goal-date">시작 · 9월 15일</div>
+  </section>
+
+  <nav class="tabs">
+   <div class="tab active">Overview</div><div class="tab">수업기록</div><div class="tab">Skill</div><div class="tab">영상</div><div class="tab">Report</div>
+  </nav>
+
+  <div class="content">
+   <section class="card">
+    <div class="card-head"><h2>현재 Skill</h2><span class="more">Skill 보기 ›</span></div>
+    <div class="skill-list">
+     <div class="skill"><span class="skill-name">받기</span><span class="dots"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i></span><span class="level">Level 3</span><span class="chev">›</span></div>
+     <div class="skill"><span class="skill-name">던지기</span><span class="dots"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span><span class="level">Level 2</span><span class="chev">›</span></div>
+     <div class="skill"><span class="skill-name">치기</span><span class="dots"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i></span><span class="level">Level 3</span><span class="chev">›</span></div>
+     <div class="skill"><span class="skill-name">주루</span><span class="dots"><i class="dot on"></i><i class="dot on"></i><i class="dot"></i><i class="dot"></i></span><span class="level">Level 2</span><span class="chev">›</span></div>
+    </div>
+   </section>
+
+   <section class="card">
+    <div class="card-head"><h2>최근 변화</h2></div>
+    <div class="change"><div class="change-icon">↑</div><div><b>받기 · Level 2 → Level 3</b><p>9월 22일 · 정면으로 오는 공을 잡는다.</p></div></div>
+   </section>
+
+   <section class="card">
+    <div class="card-head"><h2>최근 수업 기록</h2><span class="more">더보기 ›</span></div>
+    <div class="obs"><div class="obs-meta">9월 22일 · 강남 토요일 A반</div><div class="obs-text"><span class="skillbadge">받기</span>정면으로 오는 공을 끝까지 보고 잡음</div><div class="count">5회 중 5회</div></div>
+    <div class="obs"><div class="obs-meta">9월 22일 · 강남 토요일 A반</div><div class="obs-text"><span class="skillbadge">던지기</span>반대발을 내디디며 던짐</div><div class="count">5회 중 4회</div></div>
+    <div class="obs"><div class="obs-meta">9월 15일 · 강남 토요일 A반</div><div class="obs-text"><span class="skillbadge">치기</span>토스 공을 앞으로 강하게 보냄</div></div>
+   </section>
+
+   <section class="card">
+    <div class="card-head"><h2>최근 영상</h2><span class="more">더보기 ›</span></div>
+    <div class="media"><div class="thumb"><span>9/22</span></div><div class="thumb"><span>9/15</span></div><div class="thumb"><span>9/08</span></div></div>
+   </section>
+
+   <section class="card">
+    <div class="card-head"><h2>최근 리포트</h2><span class="more">보기 ›</span></div>
+    <div class="report"><div class="report-icon">▤</div><div class="report-main"><b>9월 Monthly Report</b><p>다음 목표 · 반대발 내딛기</p></div><span class="approved">승인 완료</span></div>
+   </section>
+  </div>
+ </div>
+ <div class="sticky"><button class="primary">＋ 기록 추가</button></div>
+</section>
+
+<aside class="notes">
+ <h1>Player Detail 설계 의도</h1>
+ <p>한 선수의 <b>현재 상태와 성장 히스토리</b>를 연결하는 PDS의 중심 화면이다. Overview만 보더라도 현재 목표, Skill, 최근 관찰, Media, 최근 Report를 빠르게 파악할 수 있도록 원본 데이터 전체가 아닌 핵심 요약을 우선 배치했다.</p>
+ <div class="grid">
+  <section class="note"><h3>01 · Player Header</h3><p>이름, 학년/연령, 투·타, 현재 클래스, 활동 상태만 우선 노출한다. <b>•••</b>에는 선수 정보 수정과 상태 변경을 배치하며 MVP에서 영구 삭제는 제공하지 않는다.</p></section>
+  <section class="note"><h3>02 · Current Goal</h3><p>대표 Current Goal은 한 시점에 <b>1개</b>다. 가장 중요한 코칭 행동이므로 Overview 상단에서 Navy Card로 강조한다. 변경 시 이전 Goal은 삭제하지 않고 History를 유지한다.</p></section>
+  <section class="note wide"><h3>03 · Information Priority</h3><div class="flow"><span>선수 식별</span><i>→</i><span>현재 목표</span><i>→</i><span>현재 Skill</span><i>→</i><span>최근 변화</span><i>→</i><span>실제 Observation</span><i>→</i><span>Media</span><i>→</i><span>Report</span></div><p>Overview는 상세 원본을 모두 펼치는 화면이 아니다. 각 섹션의 상세 탐색은 해당 탭으로 넘긴다.</p></section>
+  <section class="note"><h3>04 · Tab Navigation</h3><p><b>Overview / 수업기록 / Skill / 영상 / Report</b> 5개 탭. 모바일에서는 탭 영역만 가로 스크롤을 허용하고 페이지 전체의 가로 스크롤은 금지한다.</p></section>
+  <section class="note"><h3>05 · Skill Summary</h3><p>받기·던지기·치기·주루의 현재 Level만 요약한다. Level은 점수가 아닌 <b>행동 단계</b>이며 별점, 평균 대비 %, 랭킹 표현을 사용하지 않는다.</p></section>
+  <section class="note"><h3>06 · Recent Change</h3><p>최근 Skill 변경 1~3개를 보여준다. Skill Level은 Observation이나 AI가 자동 변경하지 않으며 <b>코치 승인</b>으로만 변경된다.</p></section>
+  <section class="note"><h3>07 · Recent Observation</h3><p>최신 Observation 3개를 기본 표시한다. 날짜·클래스·Skill Area·관찰 내용이 기본이고, attempts/successes는 데이터가 있을 때만 표시한다.</p></section>
+  <section class="note"><h3>08 · Media / Report</h3><p>최근 Media 최대 3개와 가장 최근 Monthly Report 1개만 Overview에 노출한다. 각각의 전체 History는 별도 탭에서 확인한다.</p></section>
+  <section class="note wide"><h3>Empty State</h3><div class="states"><div class="state"><b>Goal 없음</b><p>현재 목표가 설정되지 않았습니다. → 목표 설정</p></div><div class="state"><b>Skill 미평가</b><p>해당 Skill을 Level 1로 간주하지 않고 “미평가”로 명확히 표시.</p></div><div class="state"><b>기록 없음</b><p>수업 기록 / Media / Report별 Empty State와 해당 생성 Action 제공.</p></div></div></section>
+  <section class="note"><h3>09 · Quick Action</h3><p><b>＋ 기록 추가</b>는 모바일 하단 Sticky Primary CTA다. 활성 Class Session이 있으면 해당 Class Log로, 없으면 별도 기록 Flow 또는 최근 수업 선택으로 연결한다.</p></section>
+  <section class="note"><h3>10 · Data Integrity</h3><ul><li>Skill History 덮어쓰기 금지</li><li>Class Membership 과거 이력 유지</li><li>inactive 전환 시 성장 데이터 유지</li><li>Report는 해당 선수 데이터만 참조</li></ul></section>
+  <section class="note wide"><h3>Design System 적용</h3><p>Primary 구조/CTA는 <span class="token">Navy 800 #0B2A4A</span>, Active/Selected는 <span class="token">Blue 600 #1546F5</span>, Surface는 White, Border는 Gray 200을 사용했다. Card radius 12px, Button 48px, touch target 44px+ 원칙을 유지한다. Player Detail은 독립 Bottom Navigation보다 <b>상세 화면의 Back + Tabs + Sticky Action</b> 구조를 우선한다.</p></section>
+ </div>
+</aside>
+</main>
+</body>
+</html>

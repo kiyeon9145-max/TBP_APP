@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDS Round 1 — Dashboard 화면 명세서 v0.1</title>
+<style>
+:root{--navy:#153b56;--blue:#2e6f9e;--pale:#edf5fa;--ink:#17212b;--muted:#667085;--line:#e4e7ec;--bg:#f5f7fa;--green:#16785b;--red:#c83b3b;--amber:#a96500}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;line-height:1.65}
+.wrap{max-width:1160px;margin:auto;padding:44px 24px 80px}.hero{background:linear-gradient(135deg,#153b56,#3279aa);color:#fff;padding:42px;border-radius:24px;box-shadow:0 14px 32px rgba(21,59,86,.15)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;opacity:.8}.hero h1{font-size:36px;line-height:1.2;margin:8px 0}.hero p{max-width:780px;opacity:.9}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.chip{padding:6px 11px;border:1px solid rgba(255,255,255,.28);border-radius:999px;font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;margin-top:18px}.card h2{margin:0 0 14px;color:var(--navy);font-size:23px}.card h3{margin:20px 0 8px;font-size:17px}.muted{color:var(--muted)}.callout{background:var(--pale);border-left:4px solid var(--blue);padding:14px 16px;border-radius:8px;margin:14px 0}
+.flow{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.flow span{background:#f8fafc;border:1px solid var(--line);border-radius:9px;padding:7px 10px;font-size:13px;font-weight:650}.arrow{color:#98a2b3}
+.phone{max-width:390px;margin:20px auto;background:#fff;border:8px solid #26323b;border-radius:30px;overflow:hidden;box-shadow:0 15px 35px rgba(0,0,0,.12)}.screen{padding:18px}.phone-head{display:flex;justify-content:space-between;font-weight:800}.date{font-size:13px;color:var(--muted);margin-top:8px}.hello{font-size:20px;font-weight:800;margin:2px 0 15px}.primary{background:var(--navy);color:#fff;border-radius:15px;padding:17px;margin:12px 0}.label{font-size:11px;letter-spacing:.1em;font-weight:900;opacity:.7}.primary strong{display:block;font-size:18px;margin-top:4px}.btn{display:block;text-align:center;background:#fff;color:var(--navy);padding:10px;border-radius:9px;font-weight:800;margin-top:12px}.section-title{font-weight:850;margin:18px 0 8px}.row{border:1px solid var(--line);border-radius:11px;padding:11px;margin:7px 0;display:flex;justify-content:space-between;gap:10px}.todo{background:#fff7f7;border:1px solid #f1cccc;border-radius:11px;padding:13px}.progress{height:8px;background:#e9edf1;border-radius:99px;overflow:hidden;margin:9px 0}.bar{width:80%;height:100%;background:var(--blue)}.quick{border:1px dashed #9bb6c8;border-radius:10px;padding:10px;text-align:center;color:var(--navy);font-weight:800}.nav{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:12px 4px 3px;margin-top:18px;font-size:12px}.nav b{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:#f8fafc}.tag{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800;background:#eef2f6}
+.req{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--blue);font-weight:800;font-size:12px}.ok{color:var(--green);font-weight:800}.no{color:var(--red);font-weight:800}
+ul{padding-left:21px}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:32px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.wrap{padding:20px 14px 50px}.hero{padding:28px 22px}.hero h1{font-size:28px}.card{padding:20px}}
+@media print{body{background:#fff}.wrap{max-width:none;padding:0}.hero{box-shadow:none}.card{break-inside:avoid}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero">
+<div class="eyebrow">PDS · SCREEN SPECIFICATION · ROUND 1 / 7</div>
+<h1>Dashboard 화면 명세서 v0.1</h1>
+<p>코치가 로그인 후 오늘의 수업, 진행 중인 기록, 미작성 업무, 월간 리포트 현황을 즉시 파악하고 다음 행동으로 이동하기 위한 업무 홈 화면.</p>
+<div class="chips"><span class="chip">SCR-DASH</span><span class="chip">P0</span><span class="chip">Coach</span><span class="chip">Mobile First</span></div>
+</header>
+
+<section class="card">
+<h2>1. 화면의 역할</h2>
+<p>Dashboard는 분석용 통계판이 아니라 <b>“지금 코치가 무엇을 해야 하는가”</b>를 알려주는 업무 시작점이다.</p>
+<div class="callout"><b>핵심 질문 4개</b><br>① 오늘 어떤 수업이 있나?　② 지금 시작/재개할 수업은?　③ 빠진 기록은?　④ 이번 달 리포트는 얼마나 남았나?</div>
+<p class="muted">매출, 복잡한 성장 차트, 코치 KPI, 결제·예약 현황은 MVP Dashboard에서 제외한다.</p>
+</section>
+
+<div class="grid">
+<section class="card"><h2>2. 핵심 사용자 흐름</h2>
+<h3>수업 시작</h3><div class="flow"><span>로그인</span><i class="arrow">→</i><span>Dashboard</span><i class="arrow">→</i><span>다음 수업</span><i class="arrow">→</i><span>수업 시작</span><i class="arrow">→</i><span>Class Log</span></div>
+<h3>기록 보완</h3><div class="flow"><span>Dashboard</span><i class="arrow">→</i><span>미작성 기록</span><i class="arrow">→</i><span>대상 수업</span><i class="arrow">→</i><span>기록 완료</span></div>
+<h3>월말</h3><div class="flow"><span>Dashboard</span><i class="arrow">→</i><span>Report 진행률</span><i class="arrow">→</i><span>Monthly Report</span></div>
+</section>
+
+<section class="card"><h2>3. 정보 우선순위</h2>
+<ol>
+<li><b>Header</b> — 날짜 / 코치</li>
+<li><b>Primary Class</b> — 진행 중 또는 가장 가까운 다음 수업</li>
+<li><b>오늘 수업 목록</b></li>
+<li><b>미작성 기록</b></li>
+<li><b>Monthly Report 진행률</b></li>
+<li><b>빠른 실행</b> — 선수 등록</li>
+<li><b>Global Navigation</b></li>
+</ol>
+<p><span class="req">SCR-DASH-003</span> 진행 중 수업이 있으면 예정 수업보다 우선한다.</p>
+</section>
+</div>
+
+<section class="card">
+<h2>4. Low-Fidelity Wireframe — Mobile</h2>
+<div class="phone"><div class="screen">
+<div class="phone-head"><span>PDS</span><span>프로필</span></div>
+<div class="date">9월 22일 화요일</div><div class="hello">안녕하세요, 기연 코치님</div>
+<div class="primary"><div class="label">NEXT CLASS</div><strong>10:00 · 강남 토요일 A반</strong><div>예정 선수 8명</div><span class="btn">수업 시작</span></div>
+<div class="section-title">오늘 수업</div>
+<div class="row"><span><b>10:00</b> 강남 A반<br><small>선수 8명</small></span><span class="tag">예정</span></div>
+<div class="row"><span><b>12:00</b> 강남 B반<br><small>선수 10명</small></span><span class="tag">예정</span></div>
+<div class="section-title">해야 할 기록</div>
+<div class="todo"><b>🔴 미작성 기록 4명</b><br><small>강남 A반 2 · 강남 B반 2</small><br><b>이어 작성 →</b></div>
+<div class="section-title">9월 Monthly Report</div>
+<b>16 / 20 완료</b><div class="progress"><div class="bar"></div></div><small>80% · Approved 기준</small>
+<div class="section-title">빠른 실행</div><div class="quick">＋ 선수 등록</div>
+<div class="nav"><b>홈</b><span>선수</span><span>수업</span><span>리포트</span></div>
+</div></div>
+<div class="callout"><b>진행 중 수업이 존재하면</b> NEXT CLASS 대신 `수업 진행 중 · 기록 6/8명 · 기록 계속하기`가 Primary Card에 표시된다.</div>
+</section>
+
+<section class="card">
+<h2>5. 컴포넌트 명세</h2>
+<table><thead><tr><th>ID</th><th>컴포넌트</th><th>핵심 정보</th><th>주요 Action</th></tr></thead><tbody>
+<tr><td class="req">CMP-DASH-001</td><td>Header</td><td>날짜, 코치명, 프로필</td><td>프로필 진입</td></tr>
+<tr><td class="req">CMP-DASH-002</td><td>Primary Class</td><td>상태, 시간, 클래스, 선수 수, 기록률</td><td>수업 시작 / 기록 계속하기</td></tr>
+<tr><td class="req">CMP-DASH-003</td><td>Today Class List</td><td>시간, 클래스, 선수 수, 상태</td><td>수업 상세 진입</td></tr>
+<tr><td class="req">CMP-DASH-004</td><td>Incomplete Log</td><td>미작성 총 수, 수업별 수</td><td>이어 작성</td></tr>
+<tr><td class="req">CMP-DASH-005</td><td>Report Progress</td><td>월, Approved/대상, 진행률</td><td>작성하기</td></tr>
+<tr><td class="req">CMP-DASH-006</td><td>Quick Action</td><td>선수 등록</td><td>Player Create</td></tr>
+<tr><td class="req">CMP-DASH-007</td><td>Global Navigation</td><td>홈·선수·수업·리포트</td><td>주요 화면 이동</td></tr>
+</tbody></table>
+</section>
+
+<div class="grid">
+<section class="card"><h2>6. 상태 정의</h2>
+<h3>Class</h3><p><span class="tag">scheduled</span> 예정　<span class="tag">in_progress</span> 진행 중　<span class="tag">completed</span> 종료　<span class="tag">cancelled</span> 취소</p>
+<h3>Log</h3><p><span class="tag">not_started</span>　<span class="tag">partial</span>　<span class="tag">complete</span></p>
+<h3>Report</h3><p><span class="tag">not_started</span>　<span class="tag">draft</span>　<span class="tag">approved</span></p>
+<p class="muted">Dashboard 리포트 완료 수에는 approved만 포함한다.</p>
+</section>
+<section class="card"><h2>7. Empty / Error</h2>
+<p><b>오늘 수업 없음</b><br><span class="muted">“오늘 예정된 수업이 없습니다.”</span></p>
+<p><b>미작성 0명</b><br><span class="ok">“오늘 기록을 모두 작성했어요.”</span></p>
+<p><b>리포트 대상 0명</b><br><span class="muted">0/0을 오해할 수 있는 퍼센트로 표시하지 않는다.</span></p>
+<p><b>데이터 로드 실패</b><br><span class="no">“데이터를 불러오지 못했습니다.”</span> + 다시 시도</p>
+</section>
+</div>
+
+<section class="card"><h2>8. 핵심 인터랙션</h2>
+<table><thead><tr><th>ID</th><th>Action</th><th>규칙</th></tr></thead><tbody>
+<tr><td class="req">ACT-DASH-001</td><td>수업 시작</td><td>Class Session 생성/시작 후 Class Log 이동. 반복 클릭으로 중복 Session 생성 금지.</td></tr>
+<tr><td class="req">ACT-DASH-002</td><td>기록 계속하기</td><td>기존 in_progress Session ID 재사용.</td></tr>
+<tr><td class="req">ACT-DASH-003</td><td>미작성 기록</td><td>미작성 대상 Session/기록 화면으로 이동.</td></tr>
+<tr><td class="req">ACT-DASH-004</td><td>Report 열기</td><td>현재 월을 기본 필터로 진입.</td></tr>
+<tr><td class="req">ACT-DASH-005</td><td>선수 등록</td><td>신규 선수 등록 Flow 진입.</td></tr>
+</tbody></table>
+</section>
+
+<section class="card"><h2>9. 데이터 요구사항</h2>
+<p><b>원천 데이터</b> · Coach / Class / Class Session / Enrollment·Attendance / Observation·Class Log / Monthly Report</p>
+<p><b>Dashboard 계산 데이터</b> · 오늘 수업, 진행 중 Session, 다음 수업, 기록 완료 수, 미작성 선수 수, 월 리포트 대상 수, Approved 수, 진행률</p>
+<div class="callout"><span class="req">DATA-DASH-001~004</span> Class Log 저장, 수업 시작/종료, Report 승인 후 Dashboard로 돌아오면 해당 수치와 상태가 최신값으로 반영되어야 한다.</div>
+</section>
+
+<section class="card"><h2>10. Mobile UX 요구사항</h2>
+<ul>
+<li><span class="req">UX-DASH-001</span> 360px 이상 모바일 viewport에서 핵심 기능 사용 가능.</li>
+<li><span class="req">UX-DASH-002</span> 주요 터치 CTA 높이 최소 44px 권장.</li>
+<li><span class="req">UX-DASH-003</span> 현재/다음 수업 CTA를 빠르게 발견할 수 있어야 함.</li>
+<li><span class="req">UX-DASH-004</span> 주요 정보에 가로 스크롤 금지.</li>
+<li><span class="req">UX-DASH-005</span> 상태를 색상만으로 전달하지 않고 텍스트 병기.</li>
+</ul>
+</section>
+
+<div class="grid">
+<section class="card"><h2>11. MVP 포함</h2><ul>
+<li>오늘 날짜/코치</li><li>현재 또는 다음 수업</li><li>오늘 수업 목록</li><li>수업 시작/재진입</li><li>미작성 기록</li><li>Report 진행률</li><li>선수 등록</li><li>모바일 Navigation</li><li>Empty/Error 상태</li>
+</ul></section>
+<section class="card"><h2>12. MVP 제외</h2><ul>
+<li>매출/결제/예약</li><li>출석률·성장 차트</li><li>AI 추천 Dashboard</li><li>부모 알림</li><li>여러 지점 비교</li><li>코치 KPI</li><li>실시간 Push</li>
+</ul></section>
+</div>
+
+<section class="card"><h2>13. Acceptance Criteria</h2>
+<table><thead><tr><th>ID</th><th>완료 기준 요약</th></tr></thead><tbody>
+<tr><td class="req">AC-DASH-001</td><td>오늘 수업은 시작 시간순으로 표시.</td></tr>
+<tr><td class="req">AC-DASH-002</td><td>진행 중 Session이 있으면 최우선 카드 + 기록 계속하기.</td></tr>
+<tr><td class="req">AC-DASH-003</td><td>진행 중 수업이 없으면 가장 가까운 예정 수업에 수업 시작 제공.</td></tr>
+<tr><td class="req">AC-DASH-004</td><td>반복 클릭으로 Class Session 중복 생성 금지.</td></tr>
+<tr><td class="req">AC-DASH-005</td><td>미작성 선수 수 확인 가능.</td></tr>
+<tr><td class="req">AC-DASH-006</td><td>미작성 0명이면 완료 상태 표시.</td></tr>
+<tr><td class="req">AC-DASH-007</td><td>20명 중 Approved 16명이면 16/20, 80% 표시.</td></tr>
+<tr><td class="req">AC-DASH-008</td><td>Draft는 완료 수에 미포함.</td></tr>
+<tr><td class="req">AC-DASH-009</td><td>수업 없음은 정상 Empty State 처리.</td></tr>
+<tr><td class="req">AC-DASH-010</td><td>모바일에서 가로 스크롤 없이 핵심 정보/CTA 사용.</td></tr>
+</tbody></table>
+</section>
+
+<section class="card"><h2>14. Round 1 결정사항</h2>
+<div class="callout"><b>Dashboard = 오늘의 업무 홈</b><br>현재 수업 → 다음 수업 → 미작성 기록 → 월간 리포트 순으로 업무 우선순위를 보여준다.</div>
+<ul><li>Mobile First</li><li>리포트 진행률은 Approved 기준</li><li>진행 중 Session 재사용</li><li>MVP Quick Action은 선수 등록</li><li>다른 화면의 세부 정책은 해당 Round에서 확정</li></ul>
+</section>
+
+<div class="footer">PDS Player Development System · Round 1 / 7 · Dashboard Screen Specification v0.1</div>
+</main></body></html>
